@@ -1,0 +1,99 @@
+﻿<dx:ThemedWindow 
+    x:Class="VisionDeepTool.View.MainWindowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+    xmlns:helper="clr-namespace:VisionDeepTool.Helper"
+    xmlns:vm="clr-namespace:VisionDeepTool.ViewModel"
+    xmlns:view="clr-namespace:VisionDeepTool.View"
+    Title="MainWindow" Height="800" Width="1000"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}">
+    <DockPanel>
+        <dxwui:HamburgerMenu OpenPaneWidth="200"
+                             AvailableViewStates="Overlay"
+                             dx:FloatingContainerHeaderPanel.EnableLayoutCorrection="True">
+
+            <dxwui:HamburgerMenu.Content>
+                <ContentPresenter Content="{Binding CurrentContentViewModel}">
+                    <ContentPresenter.Resources>
+                        <DataTemplate DataType="{x:Type vm:ReleaseNoteViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:ReleaseNoteView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:SegmentationAugmentationViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:SegmentationAugmentationView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:SegmentationLabelViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:SegmentationLabelView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:SegmentationTrainViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:SegmentationTrainView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:SegmentationModelExporterViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:SegmentationModelExporterView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
+            </dxwui:HamburgerMenu.Content>
+
+            <dxwui:HamburgerMenuNavigationButton Content="릴리즈 노트" 
+                                                 Glyph="{dx:DXImage 'SvgImages/Business Objects/BO_Note.svg'}"
+                                                 Command="{Binding SelectCurrentMenuCommand}"
+                                                 CommandParameter="{Binding Source={StaticResource Locator}, Path=ReleaseNoteViewModel}"
+                                                 ToolTip="릴리즈 노트"
+                                                 SelectOnClick="True">
+            </dxwui:HamburgerMenuNavigationButton>
+
+            <dxwui:HamburgerSubMenu Content="세그먼테이션" Glyph="{dx:DXImage 'SvgImages/Dashboards/DefaultMap.svg'}" MoreButtonVisibilityMode="Hidden" ToolTip="세그먼테이션">
+                <dxwui:HamburgerSubMenu.Items>
+                    <dxwui:HamburgerSubMenuNavigationButton Content="데이터 라벨링"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=SegmentationLabelViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_Label.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+                    <dxwui:HamburgerSubMenuNavigationButton Content="데이터 증강"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=SegmentaitonAugmentationViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/XAF/Action_Copy_CellValue.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+                    <dxwui:HamburgerSubMenuNavigationButton Content="학습"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=SegmentationTrainViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/Chart/ChartType_SwiftPlot.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+
+                    <dxwui:HamburgerSubMenuNavigationButton Content="모델 추출"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=SegmentaitonModelExporterViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/XAF/Action_ModelDifferences_Export.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+
+                </dxwui:HamburgerSubMenu.Items>
+            </dxwui:HamburgerSubMenu>
+
+         
+
+            <dxwui:HamburgerMenuNavigationButton Content="설정" 
+                                                 Glyph="{dx:DXImage 'SvgImages/Icon Builder/Actions_Settings.svg'}"
+                                                 Placement="Bottom"
+                                                 Command="{Binding SelectCurrentMenuCommand}"
+                                                 ToolTip="설정"
+                                                 SelectOnClick="True">
+            </dxwui:HamburgerMenuNavigationButton>
+
+        </dxwui:HamburgerMenu>
+    </DockPanel>
+</dx:ThemedWindow>

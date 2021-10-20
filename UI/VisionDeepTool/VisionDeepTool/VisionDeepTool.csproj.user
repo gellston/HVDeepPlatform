@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="UC\SegmentationLabelControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SegmentationLabelView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ReleaseNoteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SegmentationAugmentationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SegmentationModelExporterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SegmentationTrainView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SegmetationLabelView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UC\SegmentationLabelControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SegmentationLabelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ReleaseNoteView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SegmentationAugmentationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SegmentationModelExporterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SegmentationTrainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SegmetationLabelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="VisionDeepTool.View.SegmentationLabelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VisionDeepTool.View"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <dx:UniformStackPanel DockPanel.Dock="Top"
+                              Height="40" 
+                              ChildSpacing="0" 
+                              Orientation="Horizontal"
+                              Name="TopControlMenu"
+                              >
+            <Button ToolTip="이미지 경로 열기"
+                    Width="40"
+                    Command="{Binding OpenImageFolderCommand}">
+                <Image Source="{dx:DXImage 'SvgImages/Actions/Open2.svg'}"></Image>
+            </Button>
+            <Button ToolTip="전체 라벨 저장하기"
+                    Width="40"
+                    Command="{Binding SaveLabelCommand}">
+                <Image Source="{dx:DXImage 'SvgImages/DiagramIcons/save as.svg'}"></Image>
+            </Button>
+            <Button ToolTip="라벨 추가하기"
+                    Width="40"
+                    Command="{Binding AddLabelCommand}">
+                <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_Label.svg'}"></Image>
+            </Button>
+            <Button ToolTip="라벨 삭제하기"
+                    Width="40"
+                    Command="{Binding DeleteLabelCommand}">
+                <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_DeleteCircled.svg'}"></Image>
+            </Button>
+            
+            
+        </dx:UniformStackPanel>
+        <Grid Width="400"
+              DockPanel.Dock="Right">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <dxg:GridControl EnableSmartColumnsGeneration="False"
+                             SelectionMode="Row"
+                             AutoGenerateColumns="None"
+                             ShowAllTableValuesInFilterPopup="False"
+                             ItemsSource="{Binding SegmentationImageCollection}"
+                             SelectedItem="{Binding SelectedSegmentationImage}"
+                             DockPanel.Dock="Right"
+                             Grid.Row="0">
+                <dxg:GridControl.SortInfo>
+                    <dxg:GridSortInfo FieldName="시간" SortOrder="Descending" />
+                </dxg:GridControl.SortInfo>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="파일 이름" IsSmart="False" Width="*" Binding="{Binding Path=FileName}"/>
+                    <dxg:GridColumn FieldName="파일 경로" IsSmart="False" Width="*" Binding="{Binding Path=FilePath}"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView AllowPerPixelScrolling="True" 
+                                                       ShowTotalSummary="False"
+                                                       AllowGrouping="True"
+                                                       AllowScrollToFocusedRow="False">
+                    </dxg:TableView>
+
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxg:GridControl EnableSmartColumnsGeneration="False"
+                             SelectionMode="Row"
+                             AutoGenerateColumns="None"
+                             ShowAllTableValuesInFilterPopup="False"
+                             DockPanel.Dock="Right"
+                             Grid.Row="1">
+                <dxg:GridControl.SortInfo>
+                    <dxg:GridSortInfo FieldName="시간" SortOrder="Descending" />
+                </dxg:GridControl.SortInfo>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="라벨 이름" IsSmart="False" Width="*" Binding="{Binding Path=LabelName}"/>
+                    <dxg:GridColumn FieldName="라벨 색깔" IsSmart="False" Width="*" Binding="{Binding Path=LabelColor}"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView AllowPerPixelScrolling="True" 
+                                                       ShowTotalSummary="False"
+                                                       AllowGrouping="True"
+                                                       AllowScrollToFocusedRow="False">
+                    </dxg:TableView>
+
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </Grid>
+        
+        <Border></Border>
+    </DockPanel>
+</UserControl>
