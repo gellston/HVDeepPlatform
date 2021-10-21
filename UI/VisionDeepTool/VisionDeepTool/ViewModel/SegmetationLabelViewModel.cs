@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using VisionDeepTool.Helper;
 using VisionDeepTool.Model;
 using VisionDeepTool.Service;
@@ -95,8 +96,9 @@ namespace VisionDeepTool.ViewModel
                 {
                     try
                     {
-
-                    }catch(Exception e)
+                        this.TestImage = new BitmapImage(new Uri("pack://application:,,,/VisionDeepTool;component/Image/Test.jpg"));
+                    }
+                    catch(Exception e)
                     {
                         ToastMessageHelper.ShowToastErrorMessage("Error", e.Message);
                     }
@@ -118,7 +120,7 @@ namespace VisionDeepTool.ViewModel
                     try
                     {
 
-                    }catch(Exception e)
+                    } catch (Exception e)
                     {
                         ToastMessageHelper.ShowToastErrorMessage("Error", e.Message);
                     }
@@ -130,6 +132,13 @@ namespace VisionDeepTool.ViewModel
 
 
 
+        private BitmapImage _TestImage = null;
+        public BitmapImage TestImage
+        {
+            get => _TestImage;
+            set => SetProperty(ref _TestImage, value);
+
+        }
 
 
     }

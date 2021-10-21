@@ -20,9 +20,6 @@
     <Compile Update="View\SegmentationTrainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\SegmetationLabelView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UC\SegmentationLabelControl.xaml">
@@ -41,9 +38,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SegmentationTrainView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\SegmetationLabelView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

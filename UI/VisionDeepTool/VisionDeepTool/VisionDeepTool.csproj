@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\Test.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DevExpress.Document.Processor" Version="21.1.5" />
     <PackageReference Include="DevExpress.Mvvm" Version="21.1.5" />
     <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.*-*" />
@@ -24,6 +28,10 @@
     <Reference Include="DevExpress.Xpf.Controls.v21.1">
       <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 21.1\Components\Bin\NetCore\DevExpress.Xpf.Controls.v21.1.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\Test.jpg" />
   </ItemGroup>
 
 </Project>

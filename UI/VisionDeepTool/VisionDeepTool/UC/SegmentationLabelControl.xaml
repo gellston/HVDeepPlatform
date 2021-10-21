@@ -4,9 +4,84 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VisionDeepTool.UC"
+             xmlns:model="clr-namespace:VisionDeepTool.Model"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             MouseRightButtonDown="UserControl_MouseRightButtonDown"
+             x:Name="view"
+             >
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  Name="OutScrollViewer"
+                  PreviewMouseWheel="OutScrollViewer_PreviewMouseWheel"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch">
+
+        <ListView ItemsSource="{Binding ElementName=view, Path=SegmentationLabelCollection, Mode=OneWay}"
+                  SelectedItem="{Binding ElementName=view, Path=SelectedLabel, Mode=OneWay}"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch">
+            <ListView.Background>
+                <VisualBrush TileMode="Tile"
+                         Viewport="0,0,50,50" ViewportUnits="Absolute" 
+                         Viewbox="0,0,50,50" ViewboxUnits="Absolute">
+                    <VisualBrush.Visual>
+                        <Rectangle Stroke="White" 
+                               StrokeThickness="1" 
+                               Height="50" 
+                               Width="50"
+                               StrokeDashArray="1 1"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </ListView.Background>
+            <ListView.Resources>
+                <DataTemplate DataType="{x:Type model:SegmentationLabel}">
+                    <Polygon Points="{Binding Points}" 
+                            Stroke="ForestGreen"
+                            StrokeThickness="1"
+                            Opacity="1"
+                            Name="SegmentationPolygon1">
+                        <Polygon.Fill>
+                            <SolidColorBrush Color="{Binding Color}"></SolidColorBrush>
+                        </Polygon.Fill>
+                    </Polygon>
+                    <!--<DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="Stroke" Value="DarkRed" TargetName="SegmentationPolygon1"></Setter>
+                    </DataTrigger>
+                </DataTemplate.Triggers>-->
+                </DataTemplate>
+            </ListView.Resources>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Width="{Binding ElementName=view, Path=CanvasWidth, Mode=OneWay}" 
+                            Height="{Binding ElementName=view, Path=CanvasHeight, Mode=OneWay}"
+                            Name="ChildCanvas" 
+                            RenderTransformOrigin="0.5,0.5" 
+                            MouseMove="ChildCanvas_MouseMove" 
+                            MouseLeftButtonDown="ChildCanvas_MouseLeftButtonDown"
+                            MouseLeftButtonUp="ChildCanvas_MouseLeftButtonUp"
+                            IsItemsHost="True"
+                            RenderTransform="{Binding ElementName=view, Path=TransformGroup, Mode=OneWay}">
+                        <Canvas.Background>
+                            <ImageBrush ImageSource="{Binding ElementName=view, Path=Image, Mode=OneWay}"></ImageBrush>
+                        </Canvas.Background>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Canvas.Top" Value="{Binding Y}"></Setter>
+                    <Setter Property="Canvas.Left" Value="{Binding X}"></Setter>
+                    <Setter Property="Width" Value="{Binding Width}"></Setter>
+                    <Setter Property="Height" Value="{Binding Height}"></Setter>
+                    <Setter Property="Margin" Value="0"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                    <Setter Property="BorderThickness" Value="0"></Setter>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ListView>
+    </ScrollViewer>
+    
 </UserControl>
