@@ -31,6 +31,19 @@ namespace VisionDeepTool.Service
 
 
 
+        private ObservableCollection<SegmentationLabel> _SegmentationLabelCollection = null;
+        public ObservableCollection<SegmentationLabel> SegmentationLabelCollection
+        {
+            get
+            {
+                _SegmentationLabelCollection = new ObservableCollection<SegmentationLabel>();
+                return _SegmentationLabelCollection;
+            }
+        }
+
+
+       
+
 
         public Task LoadSegmentationImageAsync(string path)
         {

@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="VisionDeepTool.UC.ClassificationLabelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VisionDeepTool.UC"
+             xmlns:model="clr-namespace:VisionDeepTool.Model"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:converter="clr-namespace:VisionDeepTool.Converter"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="view"
+             KeyDown="view_KeyDown">
+    <UserControl.Resources>
+        <converter:ColorToSolidBrushConverter x:Key="ColorToSolidBrushConverter"></converter:ColorToSolidBrushConverter>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  Name="OutScrollViewer"
+                  PreviewMouseWheel="OutScrollViewer_PreviewMouseWheel">
+        <ScrollViewer.Background>
+            <VisualBrush TileMode="Tile"
+                         Viewport="0,0,50,50" ViewportUnits="Absolute" 
+                         Viewbox="0,0,50,50" ViewboxUnits="Absolute">
+                <VisualBrush.Visual>
+                    <Rectangle Stroke="White" 
+                               StrokeThickness="1" 
+                               Height="50" 
+                               Width="50"
+                               StrokeDashArray="1 1"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </ScrollViewer.Background>
+        <ItemsControl ItemsSource="{Binding ElementName=view, Path=ClassificationLabelCollection}">
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type model:ClassificationLabel}">
+                    <Rectangle Width="{Binding Width}"
+                               Height="{Binding Height}"
+                               StrokeThickness="3"
+                               Opacity="0.5"
+                               Stroke="ForestGreen"
+                               x:Name="LabelBox1"
+                               Fill="{Binding Converter={StaticResource ColorToSolidBrushConverter}, Path=Color}">
+                        
+                        
+                    </Rectangle>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                            <Setter Property="Stroke" Value="DarkRed" TargetName="LabelBox1"></Setter>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Width="{Binding ElementName=view, Path=CanvasWidth, Mode=OneWay}"
+                            Height="{Binding ElementName=view, Path=CanvasHeight, Mode=OneWay}"
+                            Name="ChildCanvas"
+                            MouseMove="ChildCanvas_MouseMove"
+                            MouseLeftButtonDown="ChildCanvas_MouseLeftButtonDown"
+                            MouseLeftButtonUp="ChildCanvas_MouseLeftButtonUp"
+                            ClipToBounds="True"
+                            IsItemsHost="True"
+                            RenderTransform="{Binding ElementName=view, Path=TransformGroup, Mode=OneWay}"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Canvas.Background>
+                            <ImageBrush x:Name="ImageBackground"
+                                        ImageSource="{Binding ElementName=view, Path=Image, Mode=OneWay}"></ImageBrush>
+                        </Canvas.Background>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+                    <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+                    <Setter Property="Panel.ZIndex" Value="{Binding Path=Z}"></Setter>
+                    <Setter Property="Width" Value="{Binding Path=Width}"></Setter>
+                    <Setter Property="Height" Value="{Binding Path=Height}"></Setter>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>

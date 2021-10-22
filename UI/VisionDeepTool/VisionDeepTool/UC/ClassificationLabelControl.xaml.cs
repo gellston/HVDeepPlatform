@@ -21,7 +21,7 @@ namespace VisionDeepTool.UC
     /// <summary>
     /// SegmentationLabelControl.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class SegmentationLabelControl : UserControl, INotifyPropertyChanged
+    public partial class ClassificationLabelControl : UserControl, INotifyPropertyChanged
     {
 
 
@@ -44,7 +44,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public SegmentationLabelControl()
+        public ClassificationLabelControl()
         {
             InitializeComponent();
         }
@@ -65,7 +65,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty ZoomProperty = DependencyProperty.Register("Zoom", typeof(double), typeof(SegmentationLabelControl));
+        public static readonly DependencyProperty ZoomProperty = DependencyProperty.Register("Zoom", typeof(double), typeof(ClassificationLabelControl));
         public double Zoom
         {
             get
@@ -80,7 +80,7 @@ namespace VisionDeepTool.UC
             }
         }
 
-        public static readonly DependencyProperty ZoomMaxProperty = DependencyProperty.Register("ZoomMax", typeof(double), typeof(SegmentationLabelControl));
+        public static readonly DependencyProperty ZoomMaxProperty = DependencyProperty.Register("ZoomMax", typeof(double), typeof(ClassificationLabelControl));
         public double ZoomMax
         {
             get
@@ -94,7 +94,7 @@ namespace VisionDeepTool.UC
             }
         }
 
-        public static readonly DependencyProperty ZoomMinProperty = DependencyProperty.Register("ZoomMin", typeof(double), typeof(SegmentationLabelControl));
+        public static readonly DependencyProperty ZoomMinProperty = DependencyProperty.Register("ZoomMin", typeof(double), typeof(ClassificationLabelControl));
         public double ZoomMin
         {
             get
@@ -108,7 +108,7 @@ namespace VisionDeepTool.UC
             }
         }
 
-        public static readonly DependencyProperty ZoomStepProperty = DependencyProperty.Register("ZoomStep", typeof(double), typeof(SegmentationLabelControl));
+        public static readonly DependencyProperty ZoomStepProperty = DependencyProperty.Register("ZoomStep", typeof(double), typeof(ClassificationLabelControl));
         public double ZoomStep
         {
             get
@@ -123,7 +123,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty TranslationXProperty = DependencyProperty.Register("TranslationX", typeof(double), typeof(SegmentationLabelControl));
+        public static readonly DependencyProperty TranslationXProperty = DependencyProperty.Register("TranslationX", typeof(double), typeof(ClassificationLabelControl));
         public double TranslationX
         {
             get
@@ -139,7 +139,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty TranslationYProperty = DependencyProperty.Register("TranslationY", typeof(double), typeof(SegmentationLabelControl));
+        public static readonly DependencyProperty TranslationYProperty = DependencyProperty.Register("TranslationY", typeof(double), typeof(ClassificationLabelControl));
         public double TranslationY
         {
             get
@@ -180,12 +180,12 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register("Image", typeof(BitmapImage), typeof(SegmentationLabelControl), new PropertyMetadata(OnCustomerChangedCallBack));
-        public BitmapImage Image
+        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register("Image", typeof(WriteableBitmap), typeof(ClassificationLabelControl), new PropertyMetadata(OnCustomerChangedCallBack));
+        public WriteableBitmap Image
         {
             get
             {
-                return (BitmapImage)GetValue(ImageProperty);
+                return (WriteableBitmap)GetValue(ImageProperty);
             }
 
             set
@@ -196,10 +196,10 @@ namespace VisionDeepTool.UC
 
         private static void OnCustomerChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SegmentationLabelControl control = sender as SegmentationLabelControl;
+            ClassificationLabelControl control = sender as ClassificationLabelControl;
             if (control != null)
             {
-                BitmapImage image = e.NewValue as BitmapImage;
+                WriteableBitmap image = e.NewValue as WriteableBitmap;
                 if (image == null) return;
                 control.CanvasWidth = image.PixelWidth;
                 control.CanvasHeight = image.PixelHeight;
@@ -214,27 +214,27 @@ namespace VisionDeepTool.UC
 
 
 
-        public static readonly DependencyProperty SegmentationLabelCollectionProperty = DependencyProperty.Register("SegmentationLabelCollection", typeof(ObservableCollection<SegmentationLabel>), typeof(SegmentationLabelControl));
-        public ObservableCollection<SegmentationLabel> SegmentationLabelCollection
+        public static readonly DependencyProperty ClassificationLabelCollectionProperty = DependencyProperty.Register("ClassificationLabelCollection", typeof(ObservableCollection<ClassificationLabel>), typeof(ClassificationLabelControl));
+        public ObservableCollection<ClassificationLabel> ClassificationLabelCollection
         {
             get
             {
-                return (ObservableCollection<SegmentationLabel>)GetValue(SegmentationLabelCollectionProperty);
+                return (ObservableCollection<ClassificationLabel>)GetValue(ClassificationLabelCollectionProperty);
             }
 
             set
             {
-                SetValue(SegmentationLabelCollectionProperty, value);
+                SetValue(ClassificationLabelCollectionProperty, value);
             }
         }
 
 
-        public static readonly DependencyProperty SelectedLabelProperty = DependencyProperty.Register("SelectedLabel", typeof(SegmentationLabel), typeof(SegmentationLabelControl), new PropertyMetadata(OnSelectedItemChangedCallBack));
-        public SegmentationLabel SelectedLabel
+        public static readonly DependencyProperty SelectedLabelProperty = DependencyProperty.Register("SelectedLabel", typeof(ClassificationLabel), typeof(ClassificationLabelControl), new PropertyMetadata(OnSelectedItemChangedCallBack));
+        public ClassificationLabel SelectedLabel
         {
             get
             {
-                return (SegmentationLabel)GetValue(SelectedLabelProperty);
+                return (ClassificationLabel)GetValue(SelectedLabelProperty);
             }
 
             set
@@ -246,20 +246,20 @@ namespace VisionDeepTool.UC
 
         private static void OnSelectedItemChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SegmentationLabelControl control = sender as SegmentationLabelControl;
+            ClassificationLabelControl control = sender as ClassificationLabelControl;
             if (control != null)
             {
-                control.SelectedLabel = e.NewValue as SegmentationLabel;
+                control.SelectedLabel = e.NewValue as ClassificationLabel;
             }
         }
 
 
-        public static readonly DependencyProperty TargetLabelProperty = DependencyProperty.Register("TargetLabel", typeof(SegmentationLabel), typeof(SegmentationLabelControl), new PropertyMetadata(OnTargetItemChangedCallBack));
-        public SegmentationLabel TargetLabel
+        public static readonly DependencyProperty TargetLabelProperty = DependencyProperty.Register("TargetLabel", typeof(ClassificationLabel), typeof(ClassificationLabelControl), new PropertyMetadata(OnTargetItemChangedCallBack));
+        public ClassificationLabel TargetLabel
         {
             get
             {
-                return (SegmentationLabel)GetValue(TargetLabelProperty);
+                return (ClassificationLabel)GetValue(TargetLabelProperty);
             }
 
             set
@@ -270,7 +270,7 @@ namespace VisionDeepTool.UC
 
         private static void OnTargetItemChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SegmentationLabelControl control = sender as SegmentationLabelControl;
+            ClassificationLabelControl control = sender as ClassificationLabelControl;
             if (control != null)
             {
                 control.SelectedLabel = null;
@@ -285,10 +285,20 @@ namespace VisionDeepTool.UC
         {
             Canvas canvas = sender as Canvas;
             canvas.ReleaseMouseCapture();
+            if (this.SelectedLabel != null)
+                this.SelectedLabel.IsSelected = false;
+
+            this.SelectedLabel = null;
+            this.IsRectSelected = false;
+            this.IsCanvasCaptured = false;
         }
+
+
 
         private Point CanvasStart;
         private Point CanvasOrigin;
+        private bool IsRectSelected = false;
+        private bool IsCanvasCaptured = false;
 
         private void ChildCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -301,14 +311,15 @@ namespace VisionDeepTool.UC
 
 
 
-            //if (Keyboard.IsKeyDown(Key.LeftCtrl) == true && element.GetType() == typeof(Polygon))
-            //{
-            //    SegmentLabelPolygon datacontext = (element as Polygon).DataContext as SegmentLabelPolygon;
-            //    datacontext.IsSelected = !datacontext.IsSelected;
-            //    if (datacontext.IsSelected == true)
-            //        this.SelectedItem = datacontext;
-            //    return;
-            //}
+
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) == true && element.GetType() == typeof(Rectangle))
+            {
+                ClassificationLabel datacontext = (element as Rectangle).DataContext as ClassificationLabel;
+                datacontext.IsSelected = !datacontext.IsSelected;
+                if (datacontext.IsSelected == true)
+                    this.SelectedLabel = datacontext;
+                return;
+            }
 
             if (Keyboard.IsKeyDown(Key.LeftShift) == true && element.GetType() == typeof(Canvas))
             {
@@ -317,43 +328,39 @@ namespace VisionDeepTool.UC
 
                 var draggableControl = sender as Canvas;
                 draggableControl.CaptureMouse();
+                IsCanvasCaptured = true;
                 return;
             }
 
+            if (Keyboard.IsKeyDown(Key.LeftShift) == true && element.GetType() == typeof(Rectangle))
+            {
+                ClassificationLabel datacontext = (element as Rectangle).DataContext as ClassificationLabel;
+                datacontext.IsSelected = true;
 
+                this.IsRectSelected = true;
+                this.SelectedLabel = datacontext;
+
+                var draggableControl = sender as Canvas;
+                draggableControl.CaptureMouse();
+                return;
+            }
 
             if (this.SelectedLabel == null && this.TargetLabel != null && this.Image != null && Keyboard.IsKeyDown(Key.LeftAlt) == true)
             {
-                //SegmentationPolygon polygonItem = this.TargetItem.Clone() as SegmentationPolygon;
 
-                SegmentationLabel polygonItem = new SegmentationLabel();
-                polygonItem.X = 0;
-                polygonItem.Y = 0;
-                polygonItem.Width = this.Image.Width;
-                polygonItem.Height = this.Image.Height;
-                polygonItem.Color = this.TargetLabel.Color;
-                polygonItem.Name = this.TargetLabel.Name;
+                ClassificationLabel boxItem = new ClassificationLabel();
+                boxItem.X = pressedPoint.X;
+                boxItem.Y = pressedPoint.Y;
+                boxItem.Width = 10;
+                boxItem.Height = 10;
+                boxItem.Color = this.TargetLabel.Color;
+                boxItem.Name = this.TargetLabel.Name;
 
-                //polygonItem.X = 0;
-                //polygonItem.Y = 0;
-                //polygonItem.Width = this.Image.Width;
-                //polygonItem.Height = this.Image.Height;
 
-                this.SelectedLabel = polygonItem;
-                this.SegmentationLabelCollection.Add(polygonItem);
-            }
-
-            if (this.SelectedLabel != null && Keyboard.IsKeyDown(Key.LeftAlt) == true)
-            {
-                this.SelectedLabel.Points.Add(new Point()
-                {
-                    X = pressedPoint.X,
-                    Y = pressedPoint.Y
-                });
-
-                PointCollection tempCollection = this.SelectedLabel.Points;
-                PointCollection newCollection = new PointCollection(tempCollection);
-                this.SelectedLabel.Points = newCollection;
+                this.SelectedLabel = boxItem;
+                this.ClassificationLabelCollection.Add(boxItem);
+                var draggableControl = sender as Canvas;
+                draggableControl.CaptureMouse();
             }
 
         }
@@ -364,11 +371,36 @@ namespace VisionDeepTool.UC
             Canvas canvas = sender as Canvas;
             if (canvas != null)
             {
-                if (canvas.IsMouseCaptured == true && canvas != null)
+                if (canvas.IsMouseCaptured == true && canvas != null && Keyboard.IsKeyDown(Key.LeftShift) && this.IsRectSelected == false)
                 {
                     Vector v = this.CanvasStart - cursorPosition;
                     this.TranslationX = CanvasOrigin.X - v.X;
                     this.TranslationY = CanvasOrigin.Y - v.Y;
+                    return;
+                }
+
+                if (canvas.IsMouseCaptured == true && canvas != null && Keyboard.IsKeyDown(Key.LeftAlt) && this.SelectedLabel != null)
+                {
+
+                    Point canvasCursorPosition = e.GetPosition(canvas);
+
+                    this.SelectedLabel.Width = canvasCursorPosition.X - this.SelectedLabel.X;
+                    this.SelectedLabel.Height = canvasCursorPosition.Y - this.SelectedLabel.Y;
+                    System.Console.WriteLine("Box Test x: " + this.SelectedLabel.X);
+                    System.Console.WriteLine("Box Test y: " + this.SelectedLabel.Y);
+                    System.Console.WriteLine("Box Test Width: " + this.SelectedLabel.Width);
+                    System.Console.WriteLine("Box Test Height: " + this.SelectedLabel.Height);
+                    return;
+                }
+
+                if (this.IsRectSelected == true && Keyboard.IsKeyDown(Key.LeftShift))
+                {
+
+                    Point canvasCursorPosition = e.GetPosition(canvas);
+
+                    this.SelectedLabel.X = canvasCursorPosition.X - this.SelectedLabel.Width / 2;
+                    this.SelectedLabel.Y = canvasCursorPosition.Y - this.SelectedLabel.Height / 2;
+
                     return;
                 }
             }
@@ -399,6 +431,7 @@ namespace VisionDeepTool.UC
         private void UserControl_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.SelectedLabel = null;
+            this.IsRectSelected = false;
         }
 
         private void OutScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -424,6 +457,26 @@ namespace VisionDeepTool.UC
             OutScrollViewer.ScrollToVerticalOffset(OutScrollViewer.ScrollableHeight / 2);
             OutScrollViewer.ScrollToHorizontalOffset(OutScrollViewer.ScrollableWidth / 2);
 
+        }
+
+        private void view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.SelectedLabel != null && Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.C))
+            {
+                ClassificationLabel label = new ClassificationLabel()
+                {
+                    X = this.SelectedLabel.X + 10,
+                    Y = this.SelectedLabel.Y + 10,
+                    Width = this.SelectedLabel.Width,
+                    Height = this.SelectedLabel.Height,
+                    Name = this.SelectedLabel.Name,
+                    Color = this.SelectedLabel.Color,
+                    IsSelected = true
+                };
+                this.SelectedLabel.IsSelected = false;
+                this.SelectedLabel = label;
+                this.ClassificationLabelCollection.Add(this.SelectedLabel);
+            }
         }
     }
 }

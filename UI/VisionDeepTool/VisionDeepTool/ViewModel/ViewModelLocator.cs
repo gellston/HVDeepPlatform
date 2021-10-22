@@ -27,6 +27,9 @@ namespace VisionDeepTool.ViewModel
             get => App.Current.Services.GetService<ReleaseNoteViewModel>();
         }
 
+
+
+        // Segmentation
         public ObservableObject SegmentationTrainViewModel
         {
             get => App.Current.Services.GetService<SegmentationTrainViewModel>();
@@ -47,5 +50,29 @@ namespace VisionDeepTool.ViewModel
         {
             get => App.Current.Services.GetService<SegmentationModelExporterViewModel>();
         }
+        // Segmentation
+
+
+        // Classification
+        public ObservableObject ClassificationTrainViewModel
+        {
+            get => App.Current.Services.GetService<ClassificationTrainViewModel>();
+        }
+
+        public ObservableObject ClassificationLabelViewModel
+        {
+            get => App.Current.Services.GetService<ClassificationLabelViewModel>();
+        }
+
+        public ObservableObject ClassificationAugmentationViewModel
+        {
+            get => App.Current.Services.GetService<ClassificationAugmentationViewModel>();
+        }
+
+        public ObservableObject ClassificationModelExporterViewModel
+        {
+            get => App.Current.Services.GetService<ClassificationModelExporterViewModel>();
+        }
+        // Classification
     }
 }

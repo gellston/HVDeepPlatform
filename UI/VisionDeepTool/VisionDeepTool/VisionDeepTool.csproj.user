@@ -2,7 +2,22 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="UC\ClassificationLabelControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UC\SegmentationLabelControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClassificationAugmentationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClassificationLabelView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClassificationModelExporterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClassificationTrainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\SegmentationLabelView.xaml.cs">
@@ -22,7 +37,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UC\ClassificationLabelControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UC\SegmentationLabelControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationAugmentationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationLabelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationModelExporterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationTrainView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SegmentationLabelView.xaml">

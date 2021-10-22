@@ -44,17 +44,27 @@ namespace VisionDeepTool
 
             //Service
             services.AddSingleton<SegmentationService>();
-
+            services.AddSingleton<ClassificationService>();
 
 
             //ViewModel
             //ViewModel등록
             services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<ReleaseNoteViewModel>();
+
+            // Segmentation ViewModel
             services.AddSingleton<SegmentationTrainViewModel>();
             services.AddSingleton<SegmentationLabelViewModel>();
             services.AddSingleton<SegmentationAugmentationViewModel>();
             services.AddSingleton<SegmentationModelExporterViewModel>();
+
+
+
+            // Classification ViewModel
+            services.AddSingleton<ClassificationTrainViewModel>();
+            services.AddSingleton<ClassificationLabelViewModel>();
+            services.AddSingleton<ClassificationAugmentationViewModel>();
+            services.AddSingleton<ClassificationModelExporterViewModel>();
 
 
 

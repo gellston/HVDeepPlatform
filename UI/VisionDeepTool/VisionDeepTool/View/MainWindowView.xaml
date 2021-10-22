@@ -21,6 +21,8 @@
                         <DataTemplate DataType="{x:Type vm:ReleaseNoteViewModel}">
                             <helper:CacheContentControl ContentType="{x:Type view:ReleaseNoteView}"></helper:CacheContentControl>
                         </DataTemplate>
+                        
+                        
                         <DataTemplate DataType="{x:Type vm:SegmentationAugmentationViewModel}">
                             <helper:CacheContentControl ContentType="{x:Type view:SegmentationAugmentationView}"></helper:CacheContentControl>
                         </DataTemplate>
@@ -32,6 +34,20 @@
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vm:SegmentationModelExporterViewModel}">
                             <helper:CacheContentControl ContentType="{x:Type view:SegmentationModelExporterView}"></helper:CacheContentControl>
+                        </DataTemplate>
+
+
+                        <DataTemplate DataType="{x:Type vm:ClassificationAugmentationViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:ClassificationAugmentationView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:ClassificationLabelViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:ClassificationLabelView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:ClassificationTrainViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:ClassificationTrainView}"></helper:CacheContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:ClassificationModelExporterViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:ClassificationModelExporterView}"></helper:CacheContentControl>
                         </DataTemplate>
                     </ContentPresenter.Resources>
                 </ContentPresenter>
@@ -84,7 +100,48 @@
                 </dxwui:HamburgerSubMenu.Items>
             </dxwui:HamburgerSubMenu>
 
-         
+
+
+            <dxwui:HamburgerSubMenu Content="클레시피케이션" Glyph="{dx:DXImage 'SvgImages/Dashboards/GlobalColors.svg'}" MoreButtonVisibilityMode="Hidden" ToolTip="클레시피케이션">
+                <dxwui:HamburgerSubMenu.Items>
+                    <dxwui:HamburgerSubMenuNavigationButton Content="데이터 라벨링"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=ClassificationLabelViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_Label.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+                    <dxwui:HamburgerSubMenuNavigationButton Content="데이터 증강"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=ClassificationAugmentationViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/XAF/Action_Copy_CellValue.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+                    <dxwui:HamburgerSubMenuNavigationButton Content="학습"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=ClassificationTrainViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/Chart/ChartType_SwiftPlot.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+
+                    <dxwui:HamburgerSubMenuNavigationButton Content="모델 추출"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=ClassificationModelExporterViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/XAF/Action_ModelDifferences_Export.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+
+                </dxwui:HamburgerSubMenu.Items>
+            </dxwui:HamburgerSubMenu>
+
+
 
             <dxwui:HamburgerMenuNavigationButton Content="설정" 
                                                  Glyph="{dx:DXImage 'SvgImages/Icon Builder/Actions_Settings.svg'}"
