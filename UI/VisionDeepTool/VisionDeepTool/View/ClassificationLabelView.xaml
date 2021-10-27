@@ -7,6 +7,7 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:converter="clr-namespace:VisionDeepTool.Converter"
+             xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:uc="clr-namespace:VisionDeepTool.UC"
              xmlns:local="clr-namespace:VisionDeepTool.View"
              mc:Ignorable="d" 
@@ -14,6 +15,14 @@
     <UserControl.Resources>
         <converter:StringToColorConverter x:Key="StringToColorConverter"></converter:StringToColorConverter>
     </UserControl.Resources>
+
+    <mvvm:Interaction.Behaviors>
+        <mvvm:KeyToCommand KeyGesture="Alt+X" Command="{Binding SelectionNextShiftCommand}"></mvvm:KeyToCommand>
+        <mvvm:KeyToCommand KeyGesture="Alt+Z" Command="{Binding SelectionPrevShiftCommand}"></mvvm:KeyToCommand>
+        <mvvm:KeyToCommand KeyGesture="Delete" Command="{Binding DeleteLabelCommand}"></mvvm:KeyToCommand>
+        <mvvm:KeyToCommand KeyGesture="Ctrl+S" Command="{Binding SaveLabelCommand}"></mvvm:KeyToCommand>
+       
+    </mvvm:Interaction.Behaviors>
     <DockPanel>
         <dx:UniformStackPanel DockPanel.Dock="Top"
                               Height="40" 
@@ -36,11 +45,18 @@
                     Command="{Binding AddLabelCommand}">
                 <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_Label.svg'}"></Image>
             </Button>
-            <Button ToolTip="라벨 삭제하기"
+            <Button ToolTip="타겟 라벨 삭제하기"
+                    Width="40"
+                    Command="{Binding DeleteTargetLabelCommand}">
+                <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_DeleteCircled.svg'}"></Image>
+            </Button>
+            
+            <Button ToolTip="선택된 라벨 삭제하기"
                     Width="40"
                     Command="{Binding DeleteLabelCommand}">
                 <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_DeleteCircled.svg'}"></Image>
             </Button>
+            
             <dxe:PopupColorEdit Name="labelColor" 
                                 ToolTip="라벨 컬러" 
                                 Width="40"
@@ -91,7 +107,14 @@
                     <dxg:GridSortInfo FieldName="시간" SortOrder="Descending" />
                 </dxg:GridControl.SortInfo>
                 <dxg:GridControl.Columns>
-                    <dxg:GridColumn FieldName="라벨 이름" IsSmart="False" Width="*" Binding="{Binding Path=Name}"/>
+                    <dxg:GridColumn FieldName="라벨 이름" 
+                                    IsSmart="False" 
+                                    Width="*"
+                                    DisplayMemberBinding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings></dxe:TextEditSettings>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
                     <dxg:GridColumn FieldName="라벨 색깔" 
                                     DisplayMemberBinding="{Binding Path=Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <dxg:GridColumn.EditSettings>

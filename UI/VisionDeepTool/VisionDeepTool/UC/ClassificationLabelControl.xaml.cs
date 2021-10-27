@@ -285,8 +285,8 @@ namespace VisionDeepTool.UC
         {
             Canvas canvas = sender as Canvas;
             canvas.ReleaseMouseCapture();
-            if (this.SelectedLabel != null)
-                this.SelectedLabel.IsSelected = false;
+            //if (this.SelectedLabel != null)
+            //    this.SelectedLabel.IsSelected = false;
 
             this.SelectedLabel = null;
             this.IsRectSelected = false;
@@ -310,6 +310,11 @@ namespace VisionDeepTool.UC
             var element = hitTestResult.VisualHit;
 
 
+            if(element.GetType() == typeof(Rectangle))
+            {
+                ClassificationLabel datacontext = (element as Rectangle).DataContext as ClassificationLabel;
+                datacontext.IsSelected = !datacontext.IsSelected;
+            }
 
 
             if (Keyboard.IsKeyDown(Key.LeftCtrl) == true && element.GetType() == typeof(Rectangle))

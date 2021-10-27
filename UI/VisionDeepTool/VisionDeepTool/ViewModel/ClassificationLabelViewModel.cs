@@ -127,7 +127,8 @@ namespace VisionDeepTool.ViewModel
             {
                 _SaveLabelCommand ??= new AsyncRelayCommand(async () =>
                 {
-
+                    await this.classificationService.SaveClassificaitonImageAsync();
+                    Helper.ToastMessageHelper.ShowToastSuccessMessage("라벨 저장 성공", "정상적으로 저장되었습니다.");
                 });
 
                 return _SaveLabelCommand;
@@ -160,6 +161,33 @@ namespace VisionDeepTool.ViewModel
             }
         }
 
+        private ICommand _DeleteTargetLabelCommand = null;
+        public ICommand DeleteTargetLabelCommand
+        {
+            get
+            {
+                _DeleteTargetLabelCommand = new RelayCommand(() =>
+                {
+
+                    try
+                    {
+                        if (this.SelectedTargetLabel == null)
+                            return;
+
+
+                        this.TargetLabelCollection.Remove(this.SelectedTargetLabel);
+
+
+                    }catch(Exception e)
+                    {
+                        System.Diagnostics.Debug.WriteLine(e.Message);
+                    }
+                });
+
+                return _DeleteTargetLabelCommand;
+            }
+        }
+
 
         private ICommand _DeleteLabelCommand = null;
         public ICommand DeleteLabelCommand
@@ -170,7 +198,14 @@ namespace VisionDeepTool.ViewModel
                 {
                     try
                     {
-
+                        if(this.SelectedClassificationImage != null)
+                        {
+                            this.SelectedClassificationImage.LabelCollection.ToList().ForEach((data) =>
+                            {
+                                if(data.IsSelected == true)
+                                    this.SelectedClassificationImage.LabelCollection.Remove(data);
+                            });
+                        }
                     }
                     catch (Exception e)
                     {
@@ -179,6 +214,52 @@ namespace VisionDeepTool.ViewModel
 
                 });
                 return _DeleteLabelCommand;
+            }
+        }
+
+        private ICommand _SelectionNextShiftCommand = null;
+        public ICommand SelectionNextShiftCommand
+        {
+            get
+            {
+                _SelectionNextShiftCommand ??= new AsyncRelayCommand(async () =>
+                {
+
+                    if (_SelectedClassificationImage == null) return;
+                    int currentIndex = this.ClassificationImageCollection.IndexOf(_SelectedClassificationImage);
+
+                    currentIndex += 1;
+
+                    if (this.ClassificationImageCollection.Count > currentIndex)
+                        this.SelectedClassificationImage = this.ClassificationImageCollection[currentIndex];
+
+
+                });
+
+                return _SelectionNextShiftCommand;
+            }
+        }
+
+        private ICommand _SelectionPrevShiftCommand = null;
+        public ICommand SelectionPrevShiftCommand
+        {
+            get
+            {
+                _SelectionPrevShiftCommand ??= new AsyncRelayCommand(async () =>
+                {
+
+                    if (_SelectedClassificationImage == null) return;
+                    int currentIndex = this.ClassificationImageCollection.IndexOf(_SelectedClassificationImage);
+
+                    currentIndex -= 1;
+
+                    if (this.ClassificationImageCollection.Count > currentIndex && currentIndex >= 0)
+                        this.SelectedClassificationImage = this.ClassificationImageCollection[currentIndex];
+
+
+                });
+
+                return _SelectionPrevShiftCommand;
             }
         }
 

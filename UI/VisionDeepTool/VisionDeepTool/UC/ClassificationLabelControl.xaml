@@ -40,8 +40,35 @@
                                Opacity="0.5"
                                Stroke="ForestGreen"
                                x:Name="LabelBox1"
-                               Fill="{Binding Converter={StaticResource ColorToSolidBrushConverter}, Path=Color}">
-                        
+                               Fill="{Binding Converter={StaticResource ColorToSolidBrushConverter}, Path=Color}"
+                               >
+                        <Rectangle.ToolTip>
+                            <ToolTip>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Name}"></TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding X, StringFormat={}{0:#}}"></TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Y, StringFormat={}{0:#}}"></TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Width, StringFormat={}{0:#}}"></TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Height, StringFormat={}{0:#}}"></TextBlock>
+
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="X : "></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Y : "></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Width : "></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Height : "></TextBlock>
+                                </Grid>
+                            </ToolTip>
+                        </Rectangle.ToolTip>
                         
                     </Rectangle>
                     <DataTemplate.Triggers>

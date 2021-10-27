@@ -32,6 +32,13 @@ namespace VisionDeepTool.Model
             set => SetProperty(ref _FilePath, value);
         }
 
+        private string _LabelPath = "";
+        public string LabelPath
+        {
+            get => _LabelPath;
+            set => SetProperty(ref _LabelPath, value);
+        }
+
 
 
         private ObservableCollection<ClassificationLabel> _LabelCollection = new ObservableCollection<ClassificationLabel>();
