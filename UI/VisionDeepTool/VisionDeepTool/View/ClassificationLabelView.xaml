@@ -17,8 +17,8 @@
     </UserControl.Resources>
 
     <mvvm:Interaction.Behaviors>
-        <mvvm:KeyToCommand KeyGesture="Alt+X" Command="{Binding SelectionNextShiftCommand}"></mvvm:KeyToCommand>
-        <mvvm:KeyToCommand KeyGesture="Alt+Z" Command="{Binding SelectionPrevShiftCommand}"></mvvm:KeyToCommand>
+        <mvvm:KeyToCommand KeyGesture="Alt+D" Command="{Binding SelectionNextShiftCommand}"></mvvm:KeyToCommand>
+        <mvvm:KeyToCommand KeyGesture="Alt+A" Command="{Binding SelectionPrevShiftCommand}"></mvvm:KeyToCommand>
         <mvvm:KeyToCommand KeyGesture="Delete" Command="{Binding DeleteLabelCommand}"></mvvm:KeyToCommand>
         <mvvm:KeyToCommand KeyGesture="Ctrl+S" Command="{Binding SaveLabelCommand}"></mvvm:KeyToCommand>
        
