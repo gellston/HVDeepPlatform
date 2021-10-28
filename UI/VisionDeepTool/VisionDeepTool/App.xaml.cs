@@ -45,6 +45,7 @@ namespace VisionDeepTool
             //Service
             services.AddSingleton<SegmentationService>();
             services.AddSingleton<ClassificationService>();
+            services.AddSingleton<ApplicationConfigService>();
 
 
             //ViewModel

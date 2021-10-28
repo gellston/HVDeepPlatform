@@ -107,7 +107,7 @@ namespace VisionDeepTool.ViewModel
                     try
                     {
                         var path = DialogHelper.OpenFolder();
-                        await this.classificationService.LoadClassificationImageAsync(path);
+                        await this.classificationService.LoadClassificationImageAsync(path).ConfigureAwait(false);
 
                     }
                     catch (Exception e)
@@ -127,7 +127,7 @@ namespace VisionDeepTool.ViewModel
             {
                 _SaveLabelCommand ??= new AsyncRelayCommand(async () =>
                 {
-                    await this.classificationService.SaveClassificaitonImageAsync();
+                    await this.classificationService.SaveClassificaitonImageAsync().ConfigureAwait(false); ;
                     Helper.ToastMessageHelper.ShowToastSuccessMessage("라벨 저장 성공", "정상적으로 저장되었습니다.");
                 });
 
