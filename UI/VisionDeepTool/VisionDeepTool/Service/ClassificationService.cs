@@ -211,6 +211,16 @@ namespace VisionDeepTool.Service
             }
         }
 
+        private ObservableCollection<ClassificationImage> _ClassificationMergeResultImageCollection = null;
+        public ObservableCollection<ClassificationImage> ClassificationMergeResultImageCollection
+        {
+            get
+            {
+                _ClassificationMergeResultImageCollection ??= new ObservableCollection<ClassificationImage>();
+                return _ClassificationMergeResultImageCollection;
+            }
+        }
+
         private ObservableCollection<ClassificationLabel> _TargetMergeLabelCollection = null;
         public ObservableCollection<ClassificationLabel> TargetMergeLabelCollection
         {
@@ -228,6 +238,48 @@ namespace VisionDeepTool.Service
             {
                 _SourceMergeLabelCollection ??= new ObservableCollection<ClassificationLabel>();
                 return _SourceMergeLabelCollection;
+            }
+        }
+
+        private ObservableCollection<ClassificationLabel> _ResultMergeLabelCollection = null;
+        public ObservableCollection<ClassificationLabel> ResultMergeLabelCollection
+        {
+            get
+            {
+                _ResultMergeLabelCollection ??= new ObservableCollection<ClassificationLabel>();
+                return _ResultMergeLabelCollection;
+            }
+        }
+
+        public Task MergeClassificationLabelAsync()
+        {
+            try
+            {
+                var task = Task.Run(() =>
+                {
+                    try
+                    {
+                        var sourceLabelCollection = this.SourceMergeLabelCollection.ToList();
+                        var targetLabelCollection = this.TargetMergeLabelCollection.ToList();
+
+                        var unionLabelCollection = sourceLabelCollection.Union(targetLabelCollection).OrderBy(data => data.Name).ToList();
+
+
+
+                        
+
+                    }catch(Exception e)
+                    {
+                        System.Diagnostics.Debug.WriteLine(e.Message);
+                    }
+
+                });
+
+                return task;
+
+            }catch(Exception e)
+            {
+                throw new Exception("Invalid path error or unexpected error occured");
             }
         }
 

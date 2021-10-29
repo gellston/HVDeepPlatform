@@ -93,5 +93,22 @@ namespace VisionDeepTool.ViewModel
                 return _LoadSourceMergeLabelCommand;
             }
         }
+
+        private ICommand _MergeLabelCommand = null;
+        public ICommand MergeLabelCommand
+        {
+            get
+            {
+                _MergeLabelCommand ??= new AsyncRelayCommand(async() =>
+                {
+                    
+                    
+
+                });
+
+                return _MergeLabelCommand;
+
+            }
+        }
     }
 }
