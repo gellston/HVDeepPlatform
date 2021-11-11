@@ -12,11 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevExpress.Document.Processor" Version="21.1.5" />
-    <PackageReference Include="DevExpress.Mvvm" Version="21.1.5" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="21.2.3" />
+    <PackageReference Include="DevExpress.Mvvm" Version="21.2.3" />
+    <PackageReference Include="DevExpress.Wpf" Version="21.2.3" />
     <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.*-*" />
-    <PackageReference Include="DevExpress.Wpf.Dialogs" Version="21.1.5" />
-    <PackageReference Include="DevExpress.Wpf.Grid" Version="21.1.5" />
     <PackageReference Include="DevExpress.Wpf.Themes.All" Version="21.1.*-*" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.1" />
@@ -27,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="DevExpress.Xpf.Controls.v21.1">
-      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 21.1\Components\Bin\NetCore\DevExpress.Xpf.Controls.v21.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Controls.v21.2">
+      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\NetCore\DevExpress.Xpf.Controls.v21.2.dll</HintPath>
     </Reference>
   </ItemGroup>
 
