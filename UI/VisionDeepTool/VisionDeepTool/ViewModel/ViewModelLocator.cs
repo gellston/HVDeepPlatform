@@ -53,25 +53,25 @@ namespace VisionDeepTool.ViewModel
         // Segmentation
 
 
-        // Classification
-        public ObservableObject ClassificationTrainViewModel
+        // ObjectDetection
+        public ObservableObject ObjectDetectionTrainViewModel
         {
-            get => App.Current.Services.GetService<ClassificationTrainViewModel>();
+            get => App.Current.Services.GetService<ObjectDetectionTrainViewModel>();
         }
 
-        public ObservableObject ClassificationLabelViewModel
+        public ObservableObject ObjectDetectionLabelViewModel
         {
-            get => App.Current.Services.GetService<ClassificationLabelViewModel>();
+            get => App.Current.Services.GetService<ObjectDetectionLabelViewModel>();
         }
 
-        public ObservableObject ClassificationAugmentationViewModel
+        public ObservableObject ObjectDetectionAugmentationViewModel
         {
-            get => App.Current.Services.GetService<ClassificationAugmentationViewModel>();
+            get => App.Current.Services.GetService<ObjectDetectionAugmentationViewModel>();
         }
 
-        public ObservableObject ClassificationModelExporterViewModel
+        public ObservableObject ObjectDetectionModelExporterViewModel
         {
-            get => App.Current.Services.GetService<ClassificationModelExporterViewModel>();
+            get => App.Current.Services.GetService<ObjectDetectionModelExporterViewModel>();
         }
         // Classification
     }

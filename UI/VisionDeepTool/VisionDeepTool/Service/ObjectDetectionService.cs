@@ -12,36 +12,36 @@ using VisionDeepTool.Model;
 
 namespace VisionDeepTool.Service
 {
-    public class ClassificationService
+    public class ObjectDetectionService
     {
 
         private readonly ApplicationConfigService applicationConfigService;
 
 
-        public ClassificationService(ApplicationConfigService _applicationConfigService)
+        public ObjectDetectionService(ApplicationConfigService _applicationConfigService)
         {
             this.applicationConfigService = _applicationConfigService;
         }
 
-        private ObservableCollection<ClassificationImage> _ClassificationImageCollection = null;
-        public ObservableCollection<ClassificationImage> ClassificationImageCollection
+        private ObservableCollection<ObjectDetectionImage> _ObjectDetectionImageCollection = null;
+        public ObservableCollection<ObjectDetectionImage> ObjectDetectionImageCollection
         {
             get
             {
-                _ClassificationImageCollection ??= new ObservableCollection<ClassificationImage>();
-                return _ClassificationImageCollection;
+                _ObjectDetectionImageCollection ??= new ObservableCollection<ObjectDetectionImage>();
+                return _ObjectDetectionImageCollection;
             }
         }
 
 
 
 
-        private ObservableCollection<ClassificationLabel> _TargetLabelCollection = null;
-        public ObservableCollection<ClassificationLabel> TargetLabelCollection
+        private ObservableCollection<ObjectDetectionLabel> _TargetLabelCollection = null;
+        public ObservableCollection<ObjectDetectionLabel> TargetLabelCollection
         {
             get
             {
-                _TargetLabelCollection ??= new ObservableCollection<ClassificationLabel>();
+                _TargetLabelCollection ??= new ObservableCollection<ObjectDetectionLabel>();
                 return _TargetLabelCollection;
             }
         }
@@ -56,7 +56,7 @@ namespace VisionDeepTool.Service
         public void AddTargetLabel(string name, Color labelColor)
         {
 
-            this.TargetLabelCollection.Add(new ClassificationLabel()
+            this.TargetLabelCollection.Add(new ObjectDetectionLabel()
             {
                 Color = labelColor,
                 Name = name
@@ -64,14 +64,14 @@ namespace VisionDeepTool.Service
 
         }
 
-        public Task SaveClassificaitonImageAsync()
+        public Task SaveObjectDetectionImageAsync()
         {
             try
             {
 
                 var task = Task.Run(() =>
                 {
-                    var images = ClassificationImageCollection.ToList();
+                    var images = ObjectDetectionImageCollection.ToList();
 
                     foreach(var image in images)
                     {
@@ -108,13 +108,13 @@ namespace VisionDeepTool.Service
         }
 
 
-        public Task LoadClassificationImageAsync(string path)
+        public Task LoadObjectDetectionImageAsync(string path)
         {
             try
             {
 
                 var images = Helper.FileSystemHelper.GetFiles(path, "*.jpeg|*.jpg");
-                this.ClassificationImageCollection.Clear();
+                this.ObjectDetectionImageCollection.Clear();
                 var task = Task.Run(() =>
                 {
                     string _directoryPath = path;
@@ -127,7 +127,7 @@ namespace VisionDeepTool.Service
                             var fileName = Path.GetFileNameWithoutExtension(image);
                             var labelPath = directory + Path.DirectorySeparatorChar + fileName + ".json";
 
-                            var classificationImage = new ClassificationImage()
+                            var classificationImage = new ObjectDetectionImage()
                             {
                                 FileName = Path.GetFileName(image),
                                 FilePath = image,
@@ -139,7 +139,7 @@ namespace VisionDeepTool.Service
                                 var labelContent = File.ReadAllText(labelPath, Encoding.UTF8);
                                 try
                                 {
-                                    var labelCollection = JsonConvert.DeserializeObject<ObservableCollection<ClassificationLabel>>(labelContent);
+                                    var labelCollection = JsonConvert.DeserializeObject<ObservableCollection<ObjectDetectionLabel>>(labelContent);
                                     classificationImage.LabelCollection = labelCollection;
                                 }
                                 catch (Exception e)
@@ -149,7 +149,7 @@ namespace VisionDeepTool.Service
                             }
 
                             
-                            this.ClassificationImageCollection.Add(classificationImage);
+                            this.ObjectDetectionImageCollection.Add(classificationImage);
                         }));
                     }
 
@@ -159,7 +159,7 @@ namespace VisionDeepTool.Service
                         var labelInfoPath = _directoryPath + Path.DirectorySeparatorChar + "__LabelInfo.json";
                         var labelInfoContext = File.ReadAllText(labelInfoPath, Encoding.UTF8);
 
-                        var targetCollection = JsonConvert.DeserializeObject<ObservableCollection<ClassificationLabel>>(labelInfoContext);
+                        var targetCollection = JsonConvert.DeserializeObject<ObservableCollection<ObjectDetectionLabel>>(labelInfoContext);
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -190,68 +190,68 @@ namespace VisionDeepTool.Service
 
         // Merging Service
 
-        private ObservableCollection<ClassificationImage> _ClassificationMergeSourceImageCollection = null;
-        public ObservableCollection<ClassificationImage> ClassificationMergeSourceImageCollection
+        private ObservableCollection<ObjectDetectionImage> _ObjectDetectionMergeSourceImageCollection = null;
+        public ObservableCollection<ObjectDetectionImage> ObjectDetectionMergeSourceImageCollection
         {
             get
             {
-                _ClassificationImageCollection ??= new ObservableCollection<ClassificationImage>();
-                return _ClassificationMergeSourceImageCollection;
+                _ObjectDetectionMergeSourceImageCollection ??= new ObservableCollection<ObjectDetectionImage>();
+                return _ObjectDetectionMergeSourceImageCollection;
             }
         }
 
 
-        private ObservableCollection<ClassificationImage> _ClassificationMergeTargetImageCollection = null;
-        public ObservableCollection<ClassificationImage> ClassificationMergeTargetImageCollection
+        private ObservableCollection<ObjectDetectionImage> _ObjectDetectionMergeTargetImageCollection = null;
+        public ObservableCollection<ObjectDetectionImage> ObjectDetectionMergeTargetImageCollection
         {
             get
             {
-                _ClassificationMergeTargetImageCollection ??= new ObservableCollection<ClassificationImage>();
-                return _ClassificationMergeTargetImageCollection;
+                _ObjectDetectionMergeTargetImageCollection ??= new ObservableCollection<ObjectDetectionImage>();
+                return _ObjectDetectionMergeTargetImageCollection;
             }
         }
 
-        private ObservableCollection<ClassificationImage> _ClassificationMergeResultImageCollection = null;
-        public ObservableCollection<ClassificationImage> ClassificationMergeResultImageCollection
+        private ObservableCollection<ObjectDetectionImage> _ObjectDetectionMergeResultImageCollection = null;
+        public ObservableCollection<ObjectDetectionImage> ObjectDetectionMergeResultImageCollection
         {
             get
             {
-                _ClassificationMergeResultImageCollection ??= new ObservableCollection<ClassificationImage>();
-                return _ClassificationMergeResultImageCollection;
+                _ObjectDetectionMergeResultImageCollection ??= new ObservableCollection<ObjectDetectionImage>();
+                return _ObjectDetectionMergeResultImageCollection;
             }
         }
 
-        private ObservableCollection<ClassificationLabel> _TargetMergeLabelCollection = null;
-        public ObservableCollection<ClassificationLabel> TargetMergeLabelCollection
+        private ObservableCollection<ObjectDetectionLabel> _TargetMergeLabelCollection = null;
+        public ObservableCollection<ObjectDetectionLabel> TargetMergeLabelCollection
         {
             get
             {
-                _TargetMergeLabelCollection ??= new ObservableCollection<ClassificationLabel>();
+                _TargetMergeLabelCollection ??= new ObservableCollection<ObjectDetectionLabel>();
                 return _TargetMergeLabelCollection;
             }
         }
 
-        private ObservableCollection<ClassificationLabel> _SourceMergeLabelCollection = null;
-        public ObservableCollection<ClassificationLabel> SourceMergeLabelCollection
+        private ObservableCollection<ObjectDetectionLabel> _SourceMergeLabelCollection = null;
+        public ObservableCollection<ObjectDetectionLabel> SourceMergeLabelCollection
         {
             get
             {
-                _SourceMergeLabelCollection ??= new ObservableCollection<ClassificationLabel>();
+                _SourceMergeLabelCollection ??= new ObservableCollection<ObjectDetectionLabel>();
                 return _SourceMergeLabelCollection;
             }
         }
 
-        private ObservableCollection<ClassificationLabel> _ResultMergeLabelCollection = null;
-        public ObservableCollection<ClassificationLabel> ResultMergeLabelCollection
+        private ObservableCollection<ObjectDetectionLabel> _ResultMergeLabelCollection = null;
+        public ObservableCollection<ObjectDetectionLabel> ResultMergeLabelCollection
         {
             get
             {
-                _ResultMergeLabelCollection ??= new ObservableCollection<ClassificationLabel>();
+                _ResultMergeLabelCollection ??= new ObservableCollection<ObjectDetectionLabel>();
                 return _ResultMergeLabelCollection;
             }
         }
 
-        public Task MergeClassificationLabelAsync()
+        public Task MergeObjectDetectionLabelAsync()
         {
             try
             {
@@ -283,13 +283,13 @@ namespace VisionDeepTool.Service
             }
         }
 
-        public Task LoadMergeSourceClassificationLabelAsync(string source)
+        public Task LoadMergeSourceObjectDetectionLabelAsync(string source)
         {
             try
             {
 
                 var images = Helper.FileSystemHelper.GetFiles(source, "*.jpeg|*.jpg");
-                this.ClassificationMergeSourceImageCollection.Clear();
+                this.ObjectDetectionMergeSourceImageCollection.Clear();
                 var task = Task.Run(() =>
                 {
                     string _directoryPath = source;
@@ -302,7 +302,7 @@ namespace VisionDeepTool.Service
                             var fileName = Path.GetFileNameWithoutExtension(image);
                             var labelPath = directory + Path.DirectorySeparatorChar + fileName + ".json";
 
-                            var classificationImage = new ClassificationImage()
+                            var objectDetectionImage = new ObjectDetectionImage()
                             {
                                 FileName = Path.GetFileName(image),
                                 FilePath = image,
@@ -314,8 +314,8 @@ namespace VisionDeepTool.Service
                                 var labelContent = File.ReadAllText(labelPath, Encoding.UTF8);
                                 try
                                 {
-                                    var labelCollection = JsonConvert.DeserializeObject<ObservableCollection<ClassificationLabel>>(labelContent);
-                                    classificationImage.LabelCollection = labelCollection;
+                                    var labelCollection = JsonConvert.DeserializeObject<ObservableCollection<ObjectDetectionLabel>>(labelContent);
+                                    objectDetectionImage.LabelCollection = labelCollection;
                                 }
                                 catch (Exception e)
                                 {
@@ -324,7 +324,7 @@ namespace VisionDeepTool.Service
                             }
 
 
-                            this.ClassificationMergeSourceImageCollection.Add(classificationImage);
+                            this.ObjectDetectionMergeSourceImageCollection.Add(objectDetectionImage);
                         }));
                     }
 
@@ -334,7 +334,7 @@ namespace VisionDeepTool.Service
                         var labelInfoPath = _directoryPath + Path.DirectorySeparatorChar + "__LabelInfo.json";
                         var labelInfoContext = File.ReadAllText(labelInfoPath, Encoding.UTF8);
 
-                        var targetCollection = JsonConvert.DeserializeObject<ObservableCollection<ClassificationLabel>>(labelInfoContext);
+                        var targetCollection = JsonConvert.DeserializeObject<ObservableCollection<ObjectDetectionLabel>>(labelInfoContext);
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -362,13 +362,13 @@ namespace VisionDeepTool.Service
             }
         }
 
-        public Task LoadMergeTargetClassificationLabelAsync(string target)
+        public Task LoadMergeTargetObjectDetectionLabelAsync(string target)
         {
             try
             {
 
                 var images = Helper.FileSystemHelper.GetFiles(target, "*.jpeg|*.jpg");
-                this.ClassificationMergeTargetImageCollection.Clear();
+                this.ObjectDetectionMergeTargetImageCollection.Clear();
                 var task = Task.Run(() =>
                 {
                     string _directoryPath = target;
@@ -381,7 +381,7 @@ namespace VisionDeepTool.Service
                             var fileName = Path.GetFileNameWithoutExtension(image);
                             var labelPath = directory + Path.DirectorySeparatorChar + fileName + ".json";
 
-                            var classificationImage = new ClassificationImage()
+                            var objectDetectionImage = new ObjectDetectionImage()
                             {
                                 FileName = Path.GetFileName(image),
                                 FilePath = image,
@@ -393,8 +393,8 @@ namespace VisionDeepTool.Service
                                 var labelContent = File.ReadAllText(labelPath, Encoding.UTF8);
                                 try
                                 {
-                                    var labelCollection = JsonConvert.DeserializeObject<ObservableCollection<ClassificationLabel>>(labelContent);
-                                    classificationImage.LabelCollection = labelCollection;
+                                    var labelCollection = JsonConvert.DeserializeObject<ObservableCollection<ObjectDetectionLabel>>(labelContent);
+                                    objectDetectionImage.LabelCollection = labelCollection;
                                 }
                                 catch (Exception e)
                                 {
@@ -403,7 +403,7 @@ namespace VisionDeepTool.Service
                             }
 
 
-                            this.ClassificationMergeTargetImageCollection.Add(classificationImage);
+                            this.ObjectDetectionMergeTargetImageCollection.Add(objectDetectionImage);
                         }));
                     }
 
@@ -413,7 +413,7 @@ namespace VisionDeepTool.Service
                         var labelInfoPath = _directoryPath + Path.DirectorySeparatorChar + "__LabelInfo.json";
                         var labelInfoContext = File.ReadAllText(labelInfoPath, Encoding.UTF8);
 
-                        var targetCollection = JsonConvert.DeserializeObject<ObservableCollection<ClassificationLabel>>(labelInfoContext);
+                        var targetCollection = JsonConvert.DeserializeObject<ObservableCollection<ObjectDetectionLabel>>(labelInfoContext);
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {

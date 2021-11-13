@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VisionDeepTool.View.ClassificationLabelView"
+﻿<UserControl x:Class="VisionDeepTool.View.ObjectDetectionLabelView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -75,8 +75,8 @@
                              SelectionMode="Row"
                              AutoGenerateColumns="None"
                              ShowAllTableValuesInFilterPopup="False"
-                             ItemsSource="{Binding ClassificationImageCollection}"
-                             SelectedItem="{Binding SelectedClassificationImage}"
+                             ItemsSource="{Binding ObjectDetectionImageCollection}"
+                             SelectedItem="{Binding SelectedObjectDetectionImage}"
                              DockPanel.Dock="Right"
                              Grid.Row="0">
                 <dxg:GridControl.SortInfo>
@@ -133,13 +133,13 @@
             </dxg:GridControl>
         </Grid>
         <Grid>
-            <uc:ClassificationLabelControl Image="{Binding SelectedImage}"
-                                           ClassificationLabelCollection="{Binding SelectedClassificationImage.LabelCollection}"
+            <uc:ObjectDetectionLabelControl Image="{Binding SelectedImage}"
+                                           ObjectDetectionLabelCollection="{Binding SelectedObjectDetectionImage.LabelCollection}"
                                            TargetLabel="{Binding SelectedTargetLabel}"
                                            Zoom="1"
                                            ZoomMin="0.2"
                                            ZoomMax="5"
-                                           ZoomStep="0.5"></uc:ClassificationLabelControl>
+                                           ZoomStep="0.5"></uc:ObjectDetectionLabelControl>
         </Grid>
 
 

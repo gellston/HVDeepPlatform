@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace VisionDeepTool.View
 {
     /// <summary>
-    /// ClassificationLabelView.xaml에 대한 상호 작용 논리
+    /// ClassificationModelExporter.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ClassificationLabelView : UserControl
+    public partial class ObjectDetectionModelExporterView : UserControl
     {
-        public ClassificationLabelView()
+        public ObjectDetectionModelExporterView()
         {
             InitializeComponent();
         }

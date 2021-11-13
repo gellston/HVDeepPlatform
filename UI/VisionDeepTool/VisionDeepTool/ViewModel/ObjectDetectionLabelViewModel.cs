@@ -15,51 +15,51 @@ using VisionDeepTool.Service;
 
 namespace VisionDeepTool.ViewModel
 {
-    public class ClassificationLabelViewModel : ObservableObject
+    public class ObjectDetectionLabelViewModel : ObservableObject
     {
 
 
 
-        private readonly ClassificationService classificationService;
+        private readonly ObjectDetectionService objectDetectionService;
 
-        public ClassificationLabelViewModel(ClassificationService _classificationService)
+        public ObjectDetectionLabelViewModel(ObjectDetectionService _objectDetectionService)
         {
 
-            this.classificationService = _classificationService;
+            this.objectDetectionService = _objectDetectionService;
 
 
-            this.ClassificationImageCollection = this.classificationService.ClassificationImageCollection;
-            this.TargetLabelCollection = this.classificationService.TargetLabelCollection;
+            this.ObjectDetectionImageCollection = this.objectDetectionService.ObjectDetectionImageCollection;
+            this.TargetLabelCollection = this.objectDetectionService.TargetLabelCollection;
 
 
         }
 
-        private ObservableCollection<ClassificationImage> _ClassificationImageCollection = null;
-        public ObservableCollection<ClassificationImage> ClassificationImageCollection
+        private ObservableCollection<ObjectDetectionImage> _ObjectDetectionImageCollection = null;
+        public ObservableCollection<ObjectDetectionImage> ObjectDetectionImageCollection
         {
-            get => _ClassificationImageCollection;
-            set => SetProperty(ref _ClassificationImageCollection, value);
+            get => _ObjectDetectionImageCollection;
+            set => SetProperty(ref _ObjectDetectionImageCollection, value);
         }
 
-        private ClassificationLabel _SelectedTargetLabel = null;
-        public ClassificationLabel SelectedTargetLabel
+        private ObjectDetectionLabel _SelectedTargetLabel = null;
+        public ObjectDetectionLabel SelectedTargetLabel
         {
             get => _SelectedTargetLabel;
             set => SetProperty(ref _SelectedTargetLabel, value);
         }
 
-        private ObservableCollection<ClassificationLabel> _TargetLabelCollection = null;
-        public ObservableCollection<ClassificationLabel> TargetLabelCollection
+        private ObservableCollection<ObjectDetectionLabel> _TargetLabelCollection = null;
+        public ObservableCollection<ObjectDetectionLabel> TargetLabelCollection
         {
             get => _TargetLabelCollection;
             set => SetProperty(ref _TargetLabelCollection, value);
         }
 
 
-        private ClassificationImage _SelectedClassificationImage = null;
-        public ClassificationImage SelectedClassificationImage
+        private ObjectDetectionImage _SelectedObjectDetectionImage = null;
+        public ObjectDetectionImage SelectedObjectDetectionImage
         {
-            get => _SelectedClassificationImage;
+            get => _SelectedObjectDetectionImage;
             set{
 
 
@@ -67,7 +67,7 @@ namespace VisionDeepTool.ViewModel
                 try
                 {
 
-                    ClassificationImage image = value;
+                    ObjectDetectionImage image = value;
                     if(image != null)
                     {
                         var cvMat = new OpenCvSharp.Mat(image.FilePath);
@@ -82,7 +82,7 @@ namespace VisionDeepTool.ViewModel
                 }
                 
                 
-                SetProperty(ref _SelectedClassificationImage, value);
+                SetProperty(ref _SelectedObjectDetectionImage, value);
             }
         }
 
@@ -107,7 +107,7 @@ namespace VisionDeepTool.ViewModel
                     try
                     {
                         var path = DialogHelper.OpenFolder();
-                        await this.classificationService.LoadClassificationImageAsync(path).ConfigureAwait(false);
+                        await this.objectDetectionService.LoadObjectDetectionImageAsync(path).ConfigureAwait(false);
 
                     }
                     catch (Exception e)
@@ -127,7 +127,7 @@ namespace VisionDeepTool.ViewModel
             {
                 _SaveLabelCommand ??= new AsyncRelayCommand(async () =>
                 {
-                    await this.classificationService.SaveClassificaitonImageAsync().ConfigureAwait(false); ;
+                    await this.objectDetectionService.SaveObjectDetectionImageAsync().ConfigureAwait(false); ;
                     Helper.ToastMessageHelper.ShowToastSuccessMessage("라벨 저장 성공", "정상적으로 저장되었습니다.");
                 });
 
@@ -147,7 +147,7 @@ namespace VisionDeepTool.ViewModel
                 {
                     try
                     {
-                        this.classificationService.AddTargetLabel("Temp", this.SelectedLabelColor);
+                        this.objectDetectionService.AddTargetLabel("Temp", this.SelectedLabelColor);
 
                     }
                     catch (Exception e)
@@ -198,12 +198,12 @@ namespace VisionDeepTool.ViewModel
                 {
                     try
                     {
-                        if(this.SelectedClassificationImage != null)
+                        if(this.SelectedObjectDetectionImage != null)
                         {
-                            this.SelectedClassificationImage.LabelCollection.ToList().ForEach((data) =>
+                            this.SelectedObjectDetectionImage.LabelCollection.ToList().ForEach((data) =>
                             {
                                 if(data.IsSelected == true)
-                                    this.SelectedClassificationImage.LabelCollection.Remove(data);
+                                    this.SelectedObjectDetectionImage.LabelCollection.Remove(data);
                             });
                         }
                     }
@@ -225,13 +225,13 @@ namespace VisionDeepTool.ViewModel
                 _SelectionNextShiftCommand ??= new AsyncRelayCommand(async () =>
                 {
 
-                    if (_SelectedClassificationImage == null) return;
-                    int currentIndex = this.ClassificationImageCollection.IndexOf(_SelectedClassificationImage);
+                    if (_SelectedObjectDetectionImage == null) return;
+                    int currentIndex = this.ObjectDetectionImageCollection.IndexOf(_SelectedObjectDetectionImage);
 
                     currentIndex += 1;
 
-                    if (this.ClassificationImageCollection.Count > currentIndex)
-                        this.SelectedClassificationImage = this.ClassificationImageCollection[currentIndex];
+                    if (this.ObjectDetectionImageCollection.Count > currentIndex)
+                        this.SelectedObjectDetectionImage = this.ObjectDetectionImageCollection[currentIndex];
 
 
                 });
@@ -248,13 +248,13 @@ namespace VisionDeepTool.ViewModel
                 _SelectionPrevShiftCommand ??= new AsyncRelayCommand(async () =>
                 {
 
-                    if (_SelectedClassificationImage == null) return;
-                    int currentIndex = this.ClassificationImageCollection.IndexOf(_SelectedClassificationImage);
+                    if (_SelectedObjectDetectionImage == null) return;
+                    int currentIndex = this.ObjectDetectionImageCollection.IndexOf(_SelectedObjectDetectionImage);
 
                     currentIndex -= 1;
 
-                    if (this.ClassificationImageCollection.Count > currentIndex && currentIndex >= 0)
-                        this.SelectedClassificationImage = this.ClassificationImageCollection[currentIndex];
+                    if (this.ObjectDetectionImageCollection.Count > currentIndex && currentIndex >= 0)
+                        this.SelectedObjectDetectionImage = this.ObjectDetectionImageCollection[currentIndex];
 
 
                 });

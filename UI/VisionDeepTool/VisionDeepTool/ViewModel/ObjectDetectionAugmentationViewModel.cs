@@ -12,49 +12,49 @@ using VisionDeepTool.Service;
 
 namespace VisionDeepTool.ViewModel
 {
-    public class ClassificationAugmentationViewModel : ObservableObject
+    public class ObjectDetectionAugmentationViewModel : ObservableObject
     {
-        private readonly ClassificationService classificationService;
+        private readonly ObjectDetectionService objectDetectionService;
 
-        public ClassificationAugmentationViewModel(ClassificationService _classificationService)
+        public ObjectDetectionAugmentationViewModel(ObjectDetectionService _objectDetectionService)
         {
 
-            this.classificationService = _classificationService;
+            this.objectDetectionService = _objectDetectionService;
 
-            this.SourceClassificationImageCollection = this.classificationService.ClassificationMergeSourceImageCollection;
-            this.TargetClassificationImageCollection = this.classificationService.ClassificationMergeTargetImageCollection;
+            this.SourceClassificationImageCollection = this.objectDetectionService.ObjectDetectionMergeSourceImageCollection;
+            this.TargetClassificationImageCollection = this.objectDetectionService.ObjectDetectionMergeTargetImageCollection;
 
 
-            this.SourceMergeLabelCollection = this.classificationService.SourceMergeLabelCollection;
-            this.TargetMergeLabelCollection = this.classificationService.TargetMergeLabelCollection;
+            this.SourceMergeLabelCollection = this.objectDetectionService.SourceMergeLabelCollection;
+            this.TargetMergeLabelCollection = this.objectDetectionService.TargetMergeLabelCollection;
 
 
         }
 
-        private ObservableCollection<ClassificationImage> _SourceClassifcaitonImageCollection = null;
-        public ObservableCollection<ClassificationImage> SourceClassificationImageCollection
+        private ObservableCollection<ObjectDetectionImage> _SourceClassifcaitonImageCollection = null;
+        public ObservableCollection<ObjectDetectionImage> SourceClassificationImageCollection
         {
             get => _SourceClassifcaitonImageCollection;
             set => SetProperty(ref _SourceClassifcaitonImageCollection, value);
         }
 
-        private ObservableCollection<ClassificationImage> _TargetClassificationImageCollection = null;
-        public ObservableCollection<ClassificationImage> TargetClassificationImageCollection
+        private ObservableCollection<ObjectDetectionImage> _TargetClassificationImageCollection = null;
+        public ObservableCollection<ObjectDetectionImage> TargetClassificationImageCollection
         {
             get => _TargetClassificationImageCollection;
             set => SetProperty(ref _TargetClassificationImageCollection, value);
         }
 
-        private ObservableCollection<ClassificationLabel> _SourceMergeLabelCollection = null;
-        public ObservableCollection<ClassificationLabel> SourceMergeLabelCollection
+        private ObservableCollection<ObjectDetectionLabel> _SourceMergeLabelCollection = null;
+        public ObservableCollection<ObjectDetectionLabel> SourceMergeLabelCollection
         {
             get => _SourceMergeLabelCollection;
             set => SetProperty(ref _SourceMergeLabelCollection, value);
         }
 
 
-        private ObservableCollection<ClassificationLabel> _TargetMergeLabelCollection = null;
-        public ObservableCollection<ClassificationLabel> TargetMergeLabelCollection
+        private ObservableCollection<ObjectDetectionLabel> _TargetMergeLabelCollection = null;
+        public ObservableCollection<ObjectDetectionLabel> TargetMergeLabelCollection
         {
             get => _TargetMergeLabelCollection;
             set => SetProperty(ref _TargetMergeLabelCollection, value);
@@ -70,7 +70,7 @@ namespace VisionDeepTool.ViewModel
                 {
                     var path = Helper.DialogHelper.OpenFolder();
 
-                    await this.classificationService.LoadMergeSourceClassificationLabelAsync(path).ConfigureAwait(false);
+                    await this.objectDetectionService.LoadMergeSourceObjectDetectionLabelAsync(path).ConfigureAwait(false);
                 });
                 return _LoadTargetMergeLabelCommand;
             }
@@ -87,7 +87,7 @@ namespace VisionDeepTool.ViewModel
                 {
                     var path = Helper.DialogHelper.OpenFolder();
 
-                    await this.classificationService.LoadMergeSourceClassificationLabelAsync(path).ConfigureAwait(false);
+                    await this.objectDetectionService.LoadMergeSourceObjectDetectionLabelAsync(path).ConfigureAwait(false);
                 });
 
                 return _LoadSourceMergeLabelCommand;

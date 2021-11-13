@@ -19,9 +19,9 @@ using VisionDeepTool.Model;
 namespace VisionDeepTool.UC
 {
     /// <summary>
-    /// SegmentationLabelControl.xaml에 대한 상호 작용 논리
+    /// ObjectDetectionLabelControl.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ClassificationLabelControl : UserControl, INotifyPropertyChanged
+    public partial class ObjectDetectionLabelControl : UserControl, INotifyPropertyChanged
     {
 
 
@@ -44,7 +44,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public ClassificationLabelControl()
+        public ObjectDetectionLabelControl()
         {
             InitializeComponent();
         }
@@ -65,7 +65,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty ZoomProperty = DependencyProperty.Register("Zoom", typeof(double), typeof(ClassificationLabelControl));
+        public static readonly DependencyProperty ZoomProperty = DependencyProperty.Register("Zoom", typeof(double), typeof(ObjectDetectionLabelControl));
         public double Zoom
         {
             get
@@ -80,7 +80,7 @@ namespace VisionDeepTool.UC
             }
         }
 
-        public static readonly DependencyProperty ZoomMaxProperty = DependencyProperty.Register("ZoomMax", typeof(double), typeof(ClassificationLabelControl));
+        public static readonly DependencyProperty ZoomMaxProperty = DependencyProperty.Register("ZoomMax", typeof(double), typeof(ObjectDetectionLabelControl));
         public double ZoomMax
         {
             get
@@ -94,7 +94,7 @@ namespace VisionDeepTool.UC
             }
         }
 
-        public static readonly DependencyProperty ZoomMinProperty = DependencyProperty.Register("ZoomMin", typeof(double), typeof(ClassificationLabelControl));
+        public static readonly DependencyProperty ZoomMinProperty = DependencyProperty.Register("ZoomMin", typeof(double), typeof(ObjectDetectionLabelControl));
         public double ZoomMin
         {
             get
@@ -108,7 +108,7 @@ namespace VisionDeepTool.UC
             }
         }
 
-        public static readonly DependencyProperty ZoomStepProperty = DependencyProperty.Register("ZoomStep", typeof(double), typeof(ClassificationLabelControl));
+        public static readonly DependencyProperty ZoomStepProperty = DependencyProperty.Register("ZoomStep", typeof(double), typeof(ObjectDetectionLabelControl));
         public double ZoomStep
         {
             get
@@ -123,7 +123,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty TranslationXProperty = DependencyProperty.Register("TranslationX", typeof(double), typeof(ClassificationLabelControl));
+        public static readonly DependencyProperty TranslationXProperty = DependencyProperty.Register("TranslationX", typeof(double), typeof(ObjectDetectionLabelControl));
         public double TranslationX
         {
             get
@@ -139,7 +139,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty TranslationYProperty = DependencyProperty.Register("TranslationY", typeof(double), typeof(ClassificationLabelControl));
+        public static readonly DependencyProperty TranslationYProperty = DependencyProperty.Register("TranslationY", typeof(double), typeof(ObjectDetectionLabelControl));
         public double TranslationY
         {
             get
@@ -180,7 +180,7 @@ namespace VisionDeepTool.UC
         }
 
 
-        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register("Image", typeof(WriteableBitmap), typeof(ClassificationLabelControl), new PropertyMetadata(OnCustomerChangedCallBack));
+        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register("Image", typeof(WriteableBitmap), typeof(ObjectDetectionLabelControl), new PropertyMetadata(OnCustomerChangedCallBack));
         public WriteableBitmap Image
         {
             get
@@ -196,7 +196,7 @@ namespace VisionDeepTool.UC
 
         private static void OnCustomerChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ClassificationLabelControl control = sender as ClassificationLabelControl;
+            ObjectDetectionLabelControl control = sender as ObjectDetectionLabelControl;
             if (control != null)
             {
                 WriteableBitmap image = e.NewValue as WriteableBitmap;
@@ -214,27 +214,27 @@ namespace VisionDeepTool.UC
 
 
 
-        public static readonly DependencyProperty ClassificationLabelCollectionProperty = DependencyProperty.Register("ClassificationLabelCollection", typeof(ObservableCollection<ClassificationLabel>), typeof(ClassificationLabelControl));
-        public ObservableCollection<ClassificationLabel> ClassificationLabelCollection
+        public static readonly DependencyProperty ObjectDetectionLabelCollectionProperty = DependencyProperty.Register("ObjectDetectionLabelCollection", typeof(ObservableCollection<ObjectDetectionLabel>), typeof(ObjectDetectionLabelControl));
+        public ObservableCollection<ObjectDetectionLabel> ObjectDetectionLabelCollection
         {
             get
             {
-                return (ObservableCollection<ClassificationLabel>)GetValue(ClassificationLabelCollectionProperty);
+                return (ObservableCollection<ObjectDetectionLabel>)GetValue(ObjectDetectionLabelCollectionProperty);
             }
 
             set
             {
-                SetValue(ClassificationLabelCollectionProperty, value);
+                SetValue(ObjectDetectionLabelCollectionProperty, value);
             }
         }
 
 
-        public static readonly DependencyProperty SelectedLabelProperty = DependencyProperty.Register("SelectedLabel", typeof(ClassificationLabel), typeof(ClassificationLabelControl), new PropertyMetadata(OnSelectedItemChangedCallBack));
-        public ClassificationLabel SelectedLabel
+        public static readonly DependencyProperty SelectedLabelProperty = DependencyProperty.Register("SelectedLabel", typeof(ObjectDetectionLabel), typeof(ObjectDetectionLabelControl), new PropertyMetadata(OnSelectedItemChangedCallBack));
+        public ObjectDetectionLabel SelectedLabel
         {
             get
             {
-                return (ClassificationLabel)GetValue(SelectedLabelProperty);
+                return (ObjectDetectionLabel)GetValue(SelectedLabelProperty);
             }
 
             set
@@ -246,20 +246,20 @@ namespace VisionDeepTool.UC
 
         private static void OnSelectedItemChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ClassificationLabelControl control = sender as ClassificationLabelControl;
+            ObjectDetectionLabelControl control = sender as ObjectDetectionLabelControl;
             if (control != null)
             {
-                control.SelectedLabel = e.NewValue as ClassificationLabel;
+                control.SelectedLabel = e.NewValue as ObjectDetectionLabel;
             }
         }
 
 
-        public static readonly DependencyProperty TargetLabelProperty = DependencyProperty.Register("TargetLabel", typeof(ClassificationLabel), typeof(ClassificationLabelControl), new PropertyMetadata(OnTargetItemChangedCallBack));
-        public ClassificationLabel TargetLabel
+        public static readonly DependencyProperty TargetLabelProperty = DependencyProperty.Register("TargetLabel", typeof(ObjectDetectionLabel), typeof(ObjectDetectionLabelControl), new PropertyMetadata(OnTargetItemChangedCallBack));
+        public ObjectDetectionLabel TargetLabel
         {
             get
             {
-                return (ClassificationLabel)GetValue(TargetLabelProperty);
+                return (ObjectDetectionLabel)GetValue(TargetLabelProperty);
             }
 
             set
@@ -270,7 +270,7 @@ namespace VisionDeepTool.UC
 
         private static void OnTargetItemChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ClassificationLabelControl control = sender as ClassificationLabelControl;
+            ObjectDetectionLabelControl control = sender as ObjectDetectionLabelControl;
             if (control != null)
             {
                 control.SelectedLabel = null;
@@ -310,16 +310,16 @@ namespace VisionDeepTool.UC
             var element = hitTestResult.VisualHit;
 
 
-            if(element.GetType() == typeof(Rectangle))
+            if (element.GetType() == typeof(Rectangle))
             {
-                ClassificationLabel datacontext = (element as Rectangle).DataContext as ClassificationLabel;
+                ObjectDetectionLabel datacontext = (element as Rectangle).DataContext as ObjectDetectionLabel;
                 datacontext.IsSelected = !datacontext.IsSelected;
             }
 
 
             if (Keyboard.IsKeyDown(Key.LeftCtrl) == true && element.GetType() == typeof(Rectangle))
             {
-                ClassificationLabel datacontext = (element as Rectangle).DataContext as ClassificationLabel;
+                ObjectDetectionLabel datacontext = (element as Rectangle).DataContext as ObjectDetectionLabel;
                 datacontext.IsSelected = !datacontext.IsSelected;
                 if (datacontext.IsSelected == true)
                     this.SelectedLabel = datacontext;
@@ -339,7 +339,7 @@ namespace VisionDeepTool.UC
 
             if (Keyboard.IsKeyDown(Key.LeftShift) == true && element.GetType() == typeof(Rectangle))
             {
-                ClassificationLabel datacontext = (element as Rectangle).DataContext as ClassificationLabel;
+                ObjectDetectionLabel datacontext = (element as Rectangle).DataContext as ObjectDetectionLabel;
                 datacontext.IsSelected = true;
 
                 this.IsRectSelected = true;
@@ -350,7 +350,24 @@ namespace VisionDeepTool.UC
                 return;
             }
 
-         
+            if (this.SelectedLabel == null && this.TargetLabel != null && this.Image != null && Keyboard.IsKeyDown(Key.LeftAlt) == true)
+            {
+
+                ObjectDetectionLabel boxItem = new ObjectDetectionLabel();
+                boxItem.X = pressedPoint.X;
+                boxItem.Y = pressedPoint.Y;
+                boxItem.Width = 10;
+                boxItem.Height = 10;
+                boxItem.Color = this.TargetLabel.Color;
+                boxItem.Name = this.TargetLabel.Name;
+
+
+                this.SelectedLabel = boxItem;
+                this.ObjectDetectionLabelCollection.Add(boxItem);
+                var draggableControl = sender as Canvas;
+                draggableControl.CaptureMouse();
+            }
+
         }
 
         private void ChildCanvas_MouseMove(object sender, MouseEventArgs e)
@@ -367,30 +384,30 @@ namespace VisionDeepTool.UC
                     return;
                 }
 
-                //if (canvas.IsMouseCaptured == true && canvas != null && Keyboard.IsKeyDown(Key.LeftAlt) && this.SelectedLabel != null)
-                //{
+                if (canvas.IsMouseCaptured == true && canvas != null && Keyboard.IsKeyDown(Key.LeftAlt) && this.SelectedLabel != null)
+                {
 
-                //    Point canvasCursorPosition = e.GetPosition(canvas);
+                    Point canvasCursorPosition = e.GetPosition(canvas);
 
-                //    this.SelectedLabel.Width = canvasCursorPosition.X - this.SelectedLabel.X;
-                //    this.SelectedLabel.Height = canvasCursorPosition.Y - this.SelectedLabel.Y;
-                //    System.Console.WriteLine("Box Test x: " + this.SelectedLabel.X);
-                //    System.Console.WriteLine("Box Test y: " + this.SelectedLabel.Y);
-                //    System.Console.WriteLine("Box Test Width: " + this.SelectedLabel.Width);
-                //    System.Console.WriteLine("Box Test Height: " + this.SelectedLabel.Height);
-                //    return;
-                //}
+                    this.SelectedLabel.Width = canvasCursorPosition.X - this.SelectedLabel.X;
+                    this.SelectedLabel.Height = canvasCursorPosition.Y - this.SelectedLabel.Y;
+                    System.Console.WriteLine("Box Test x: " + this.SelectedLabel.X);
+                    System.Console.WriteLine("Box Test y: " + this.SelectedLabel.Y);
+                    System.Console.WriteLine("Box Test Width: " + this.SelectedLabel.Width);
+                    System.Console.WriteLine("Box Test Height: " + this.SelectedLabel.Height);
+                    return;
+                }
 
-                //if (this.IsRectSelected == true && Keyboard.IsKeyDown(Key.LeftShift))
-                //{
+                if (this.IsRectSelected == true && Keyboard.IsKeyDown(Key.LeftShift))
+                {
 
-                //    Point canvasCursorPosition = e.GetPosition(canvas);
+                    Point canvasCursorPosition = e.GetPosition(canvas);
 
-                //    this.SelectedLabel.X = canvasCursorPosition.X - this.SelectedLabel.Width / 2;
-                //    this.SelectedLabel.Y = canvasCursorPosition.Y - this.SelectedLabel.Height / 2;
+                    this.SelectedLabel.X = canvasCursorPosition.X - this.SelectedLabel.Width / 2;
+                    this.SelectedLabel.Y = canvasCursorPosition.Y - this.SelectedLabel.Height / 2;
 
-                //    return;
-                //}
+                    return;
+                }
             }
         }
 
@@ -447,14 +464,24 @@ namespace VisionDeepTool.UC
 
         }
 
-        //private void view_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (this.SelectedLabel != null && Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.C))
-        //    {
-        //        this.SelectedLabel.IsSelected = false;
-        //        this.SelectedLabel = label;
-        //        this.ClassificationLabelCollection.Add(this.SelectedLabel);
-        //    }
-        //}
+        private void view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.SelectedLabel != null && Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.C))
+            {
+                ObjectDetectionLabel label = new ObjectDetectionLabel()
+                {
+                    X = this.SelectedLabel.X + 10,
+                    Y = this.SelectedLabel.Y + 10,
+                    Width = this.SelectedLabel.Width,
+                    Height = this.SelectedLabel.Height,
+                    Name = this.SelectedLabel.Name,
+                    Color = this.SelectedLabel.Color,
+                    IsSelected = true
+                };
+                this.SelectedLabel.IsSelected = false;
+                this.SelectedLabel = label;
+                this.ObjectDetectionLabelCollection.Add(this.SelectedLabel);
+            }
+        }
     }
 }

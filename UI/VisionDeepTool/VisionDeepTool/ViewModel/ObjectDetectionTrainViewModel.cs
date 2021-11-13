@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace VisionDeepTool.ViewModel
 {
-    public class ClassificationModelExporterViewModel : ObservableObject
+    public class ObjectDetectionTrainViewModel : ObservableObject
     {
 
-        public ClassificationModelExporterViewModel()
+        public ObjectDetectionTrainViewModel()
         {
-
+            
         }
     }
 }

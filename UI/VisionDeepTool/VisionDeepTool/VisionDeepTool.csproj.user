@@ -5,19 +5,22 @@
     <Compile Update="UC\ClassificationLabelControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UC\ObjectDetectionLabelControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UC\SegmentationLabelControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\ClassificationAugmentationView.xaml.cs">
+    <Compile Update="View\ObjectDetectionAugmentationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\ClassificationLabelView.xaml.cs">
+    <Compile Update="View\ObjectDetectionLabelView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\ClassificationModelExporterView.xaml.cs">
+    <Compile Update="View\ObjectDetectionModelExporterView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\ClassificationTrainView.xaml.cs">
+    <Compile Update="View\ObjectDetectionTrainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\SegmentationLabelView.xaml.cs">
@@ -40,19 +43,22 @@
     <Page Update="UC\ClassificationLabelControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UC\ObjectDetectionLabelControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UC\SegmentationLabelControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\ClassificationAugmentationView.xaml">
+    <Page Update="View\ObjectDetectionAugmentationView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\ClassificationLabelView.xaml">
+    <Page Update="View\ObjectDetectionLabelView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\ClassificationModelExporterView.xaml">
+    <Page Update="View\ObjectDetectionModelExporterView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\ClassificationTrainView.xaml">
+    <Page Update="View\ObjectDetectionTrainView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SegmentationLabelView.xaml">
