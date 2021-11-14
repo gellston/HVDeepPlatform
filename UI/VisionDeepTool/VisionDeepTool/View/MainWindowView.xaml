@@ -49,6 +49,12 @@
                         <DataTemplate DataType="{x:Type vm:ObjectDetectionModelExporterViewModel}">
                             <helper:CacheContentControl ContentType="{x:Type view:ObjectDetectionModelExporterView}"></helper:CacheContentControl>
                         </DataTemplate>
+
+
+
+                        <DataTemplate DataType="{x:Type vm:ClassificationLabelViewModel}">
+                            <helper:CacheContentControl ContentType="{x:Type view:ClassificationLabelView}"></helper:CacheContentControl>
+                        </DataTemplate>
                     </ContentPresenter.Resources>
                 </ContentPresenter>
             </dxwui:HamburgerMenu.Content>
@@ -102,7 +108,7 @@
 
 
 
-            <dxwui:HamburgerSubMenu Content="오브젝트 디텍션" Glyph="{dx:DXImage 'SvgImages/Dashboards/GlobalColors.svg'}" MoreButtonVisibilityMode="Hidden" ToolTip="오브젝트 디텍션">
+            <dxwui:HamburgerSubMenu Content="오브젝트 디텍션" Glyph="{dx:DXImage 'SvgImages/DiagramIcons/Direction/direction1.svg'}" MoreButtonVisibilityMode="Hidden" ToolTip="오브젝트 디텍션">
                 <dxwui:HamburgerSubMenu.Items>
                     <dxwui:HamburgerSubMenuNavigationButton Content="데이터 라벨링"
                                                             SelectOnClick="False"
@@ -140,6 +146,23 @@
 
                 </dxwui:HamburgerSubMenu.Items>
             </dxwui:HamburgerSubMenu>
+            
+            
+            
+
+            <dxwui:HamburgerSubMenu Content="클래시피케이션" Glyph="{dx:DXImage 'SvgImages/Dashboards/GlobalColors.svg'}" MoreButtonVisibilityMode="Hidden" ToolTip="오브젝트 디텍션">
+                <dxwui:HamburgerSubMenu.Items>
+                    <dxwui:HamburgerSubMenuNavigationButton Content="데이터 라벨링"
+                                                            SelectOnClick="False"
+                                                            Command="{Binding SelectCurrentMenuCommand}"
+                                                            CommandParameter="{Binding Source={StaticResource Locator}, Path=ClassificationLabelViewModel}">
+                        <dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                            <Image Source="{dx:DXImage 'SvgImages/Icon Builder/Actions_Label.svg'}"></Image>
+                        </dxwui:HamburgerSubMenuNavigationButton.RightContent>
+                    </dxwui:HamburgerSubMenuNavigationButton>
+                </dxwui:HamburgerSubMenu.Items>
+            </dxwui:HamburgerSubMenu>
+
 
 
 

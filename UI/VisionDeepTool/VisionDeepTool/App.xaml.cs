@@ -46,6 +46,7 @@ namespace VisionDeepTool
             services.AddSingleton<SegmentationService>();
             services.AddSingleton<ObjectDetectionService>();
             services.AddSingleton<ApplicationConfigService>();
+            services.AddSingleton<ClassificationService>();
 
 
             //ViewModel
@@ -61,13 +62,17 @@ namespace VisionDeepTool
 
 
 
-            // Classification ViewModel
+            // ObjectDetection ViewModel
             services.AddSingleton<ObjectDetectionTrainViewModel>();
             services.AddSingleton<ObjectDetectionLabelViewModel>();
             services.AddSingleton<ObjectDetectionAugmentationViewModel>();
             services.AddSingleton<ObjectDetectionModelExporterViewModel>();
 
 
+
+            // Classification ViewModel
+
+            services.AddSingleton<ClassificationLabelViewModel>();
 
 
             return services.BuildServiceProvider();

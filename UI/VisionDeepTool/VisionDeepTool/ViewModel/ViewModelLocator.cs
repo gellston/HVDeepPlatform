@@ -73,6 +73,13 @@ namespace VisionDeepTool.ViewModel
         {
             get => App.Current.Services.GetService<ObjectDetectionModelExporterViewModel>();
         }
-        // Classification
+        // ObjectDetection
+
+
+        //Classification
+        public ObservableObject ClassificationLabelViewModel
+        {
+            get => App.Current.Services.GetService<ClassificationLabelViewModel>();
+        }
     }
 }

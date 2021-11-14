@@ -11,6 +11,18 @@
     <Compile Update="UC\SegmentationLabelControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\ClassificationAugmentationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClassificationLabelView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClassificationModelExporterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClassificationTrainView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ObjectDetectionAugmentationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +59,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UC\SegmentationLabelControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationAugmentationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationLabelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationModelExporterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClassificationTrainView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ObjectDetectionAugmentationView.xaml">
