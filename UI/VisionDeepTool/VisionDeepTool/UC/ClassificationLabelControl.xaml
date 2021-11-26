@@ -13,27 +13,40 @@
     <!--<UserControl.Resources>
         <converter:ColorToSolidBrushConverter x:Key="ColorToSolidBrushConverter"></converter:ColorToSolidBrushConverter>
     </UserControl.Resources>-->
-    <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto"
-                  Name="OutScrollViewer"
-                  PreviewMouseWheel="OutScrollViewer_PreviewMouseWheel">
-        <ScrollViewer.Background>
-            <VisualBrush TileMode="Tile"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="300"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      Name="OutScrollViewer"
+                      PreviewMouseWheel="OutScrollViewer_PreviewMouseWheel"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Grid.Row="0"
+                      Grid.RowSpan="2">
+            <ScrollViewer.Background>
+                <VisualBrush TileMode="Tile"
                          Viewport="0,0,50,50" ViewportUnits="Absolute" 
                          Viewbox="0,0,50,50" ViewboxUnits="Absolute">
-                <VisualBrush.Visual>
-                    <Rectangle Stroke="White" 
+                    <VisualBrush.Visual>
+                        <Rectangle Stroke="White" 
                                StrokeThickness="1" 
                                Height="50" 
                                Width="50"
                                StrokeDashArray="1 1"/>
-                </VisualBrush.Visual>
-            </VisualBrush>
-        </ScrollViewer.Background>
-        <ItemsControl ItemsSource="{Binding ElementName=view, Path=ClassificationLabelCollection}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas Width="{Binding ElementName=view, Path=CanvasWidth, Mode=OneWay}"
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </ScrollViewer.Background>
+            <ItemsControl ItemsSource="{Binding ElementName=view, Path=ClassificationLabelCollection}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="{Binding ElementName=view, Path=CanvasWidth, Mode=OneWay}"
                             Height="{Binding ElementName=view, Path=CanvasHeight, Mode=OneWay}"
                             Name="ChildCanvas"
                             MouseMove="ChildCanvas_MouseMove"
@@ -43,14 +56,14 @@
                             IsItemsHost="True"
                             RenderTransform="{Binding ElementName=view, Path=TransformGroup, Mode=OneWay}"
                             RenderTransformOrigin="0.5,0.5">
-                        <Canvas.Background>
-                            <ImageBrush x:Name="ImageBackground"
+                            <Canvas.Background>
+                                <ImageBrush x:Name="ImageBackground"
                                         ImageSource="{Binding ElementName=view, Path=Image, Mode=OneWay}"></ImageBrush>
-                        </Canvas.Background>
-                    </Canvas>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <!--<ItemsControl.ItemContainerStyle>
+                            </Canvas.Background>
+                        </Canvas>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <!--<ItemsControl.ItemContainerStyle>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
                     <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
@@ -59,6 +72,8 @@
                     <Setter Property="Height" Value="{Binding Path=Height}"></Setter>
                 </Style>
             </ItemsControl.ItemContainerStyle>-->
-        </ItemsControl>
-    </ScrollViewer>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+    
 </UserControl>
